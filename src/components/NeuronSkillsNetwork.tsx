@@ -36,6 +36,17 @@ const CATEGORY_META = {
   languages: { label: 'Core Languages', color: '#d8b4fe', glow: 'rgba(216, 180, 254, 0.6)' },
 };
 
+const getTierLabel = (tier: 'core' | 'hub' | 'leaf') => {
+  switch (tier) {
+    case 'core':
+      return 'Core Pillar';
+    case 'hub':
+      return 'Primary Specialization';
+    case 'leaf':
+      return 'Applied Production Stack';
+  }
+};
+
 // Initial nodes data
 const INITIAL_NODES: Omit<NeuronNode, 'x' | 'y' | 'vx' | 'vy'>[] = [
   // CENTRAL SOMA
@@ -613,20 +624,27 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
         ctx.stroke();
       }
 
-      // Physics: gentle floating organic drift + boundary constraints
-      nodes.forEach((node) => {
-        if (node.id !== 'soma') {
-          node.x += node.vx + Math.sin(time + node.radius) * 0.15;
-          node.y += node.vy + Math.cos(time + node.radius) * 0.15;
+      // Check reduced motion preference
+      const prefersReducedMotion =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-          // Keep in bounds
-          const pad = 40;
-          if (node.x < pad) { node.x = pad; node.vx *= -1; }
-          if (node.x > containerW - pad) { node.x = containerW - pad; node.vx *= -1; }
-          if (node.y < pad) { node.y = pad; node.vy *= -1; }
-          if (node.y > containerH - pad) { node.y = containerH - pad; node.vy *= -1; }
-        }
-      });
+      // Physics: gentle floating organic drift + boundary constraints (skipped if reduced motion)
+      if (!prefersReducedMotion) {
+        nodes.forEach((node) => {
+          if (node.id !== 'soma') {
+            node.x += node.vx + Math.sin(time + node.radius) * 0.15;
+            node.y += node.vy + Math.cos(time + node.radius) * 0.15;
+
+            // Keep in bounds
+            const pad = 40;
+            if (node.x < pad) { node.x = pad; node.vx *= -1; }
+            if (node.x > containerW - pad) { node.x = containerW - pad; node.vx *= -1; }
+            if (node.y < pad) { node.y = pad; node.vy *= -1; }
+            if (node.y > containerH - pad) { node.y = containerH - pad; node.vy *= -1; }
+          }
+        });
+      }
 
       // Map lookup
       const nodeMap = new Map<string, NeuronNode>();
@@ -1058,22 +1076,21 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                     {selectedNode.description}
                   </p>
 
-                  {/* Proficiency Meter */}
-                  <div className="mb-4">
-                    <div className="flex justify-between text-[10px] font-mono mb-1 text-white/50">
-                      <span>SYNAPTIC PROFICIENCY</span>
-                      <span className="text-[#CCFF00] font-bold">{selectedNode.level}%</span>
+                  {/* Competency Level Badge */}
+                  <div className="mb-4 p-3 rounded-lg border border-white/10 bg-white/[0.03]">
+                    <div className="flex justify-between items-center text-[10px] font-mono text-white/50 mb-1">
+                      <span>COMPETENCY LEVEL</span>
+                      <span className="text-[#CCFF00] font-bold uppercase tracking-wider">
+                        {getTierLabel(selectedNode.tier)}
+                      </span>
                     </div>
-                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${selectedNode.level}%` }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="h-full rounded-full"
-                        style={{
-                          background: `linear-gradient(90deg, #CCFF00, ${CATEGORY_META[selectedNode.category]?.color || '#88aaff'})`,
-                        }}
-                      />
+                    <div className="text-xs text-white/75 font-mono leading-relaxed">
+                      {selectedNode.tier === 'core' &&
+                        'Primary architectural pillar integrated across flagship systems.'}
+                      {selectedNode.tier === 'hub' &&
+                        'Key domain capability with extensive hands-on system building and research.'}
+                      {selectedNode.tier === 'leaf' &&
+                        'Production-ready framework actively applied in software and AI projects.'}
                     </div>
                   </div>
 
@@ -1160,23 +1177,14 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                         className="p-2.5 rounded border border-white/5 bg-white/[0.015] hover:border-white/15 hover:bg-white/[0.04] transition-all cursor-pointer group/item"
                       >
                         <div className="flex items-center justify-between text-xs mb-1">
-                          <span className="text-white/80 font-mono font-medium group-hover/item:text-[#CCFF00] transition-colors">
+                          <span className="text-white/90 font-mono font-medium group-hover/item:text-[#CCFF00] transition-colors">
                             {node.name}
                           </span>
-                          <span className="text-[10px] font-mono text-white/40">
-                            {node.level}%
+                          <span className="text-[10px] font-mono text-[#CCFF00]/80 px-2 py-0.5 rounded bg-white/[0.04] border border-white/5">
+                            {getTierLabel(node.tier)}
                           </span>
                         </div>
-                        <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full transition-all duration-500"
-                            style={{
-                              width: `${node.level}%`,
-                              background: meta.color,
-                            }}
-                          />
-                        </div>
-                        <p className="text-[11px] text-white/40 mt-1.5 leading-snug font-sans line-clamp-1">
+                        <p className="text-[11px] text-white/50 mt-1 leading-snug font-sans line-clamp-1">
                           {node.description}
                         </p>
                       </div>

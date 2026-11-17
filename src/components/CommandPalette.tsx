@@ -76,15 +76,12 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
         scrollToSection('skills');
         break;
 
+      case 'education':
       case 'about':
-        newLogs.push({ text: 'Navigating to About & Dual Degree Track...', color: '#CCFF00' });
-        scrollToSection('about');
-        break;
-
       case 'achievements':
       case 'awards':
-        newLogs.push({ text: 'Navigating to Achievements & Honors...', color: '#CCFF00' });
-        scrollToSection('achievements');
+        newLogs.push({ text: 'Navigating to Education & Credentials...', color: '#CCFF00' });
+        scrollToSection('education');
         break;
 
       case 'experience':

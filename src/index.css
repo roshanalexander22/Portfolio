@@ -59,10 +59,26 @@ p {
   border-radius: 2px;
 }
 
-/* Marquee animation */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+/* Accessibility: Focus visible indicator */
+:focus-visible {
+  outline: 2px solid #CCFF00 !important;
+  outline-offset: 3px !important;
+}
+
+/* Accessibility: Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .marquee-track {
+    animation: none !important;
+  }
 }
 
 .marquee-track {

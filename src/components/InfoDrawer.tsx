@@ -532,32 +532,18 @@ export default function InfoDrawer({ isOpen, onClose, initialSection = 'menu', o
                     <div className="space-y-3 mb-8">
                       {[
                         {
-                          deg: 'B.Tech – Computer Science & Engineering',
-                          inst: 'Government Engineering College (GEC), Idukki',
-                          period: 'Sept 2024 – May 2028',
-                          note: 'CGPA 8.5+ · Clean record',
+                          deg: 'B.Tech in Computer Science and Engineering',
+                          inst: 'Government Engineering College, Idukki',
+                          period: '2024 – 2028',
+                          note: 'CGPA 8.5+',
                           color: '#CCFF00',
                         },
                         {
-                          deg: 'B.Sc – Data Science & Artificial Intelligence',
-                          inst: 'Indian Institute of Technology (IIT), Guwahati',
-                          period: 'Sept 2025 – July 2029',
-                          note: 'Distance / Online Programme',
+                          deg: 'B.Sc. in Data Science and Artificial Intelligence',
+                          inst: 'IIT Guwahati',
+                          period: '2025 – 2029',
+                          note: 'Enrolled',
                           color: '#88aaff',
-                        },
-                        {
-                          deg: 'Higher Secondary (Plus Two)',
-                          inst: 'St. Gregorios HSS, Pulamon',
-                          period: '2024',
-                          note: '98.5%',
-                          color: '#aaffcc',
-                        },
-                        {
-                          deg: 'Secondary School Leaving Certificate (SSLC)',
-                          inst: "St. Mary's HSS, Kizhakkekkara",
-                          period: '2022',
-                          note: '100%',
-                          color: '#ff88aa',
                         },
                       ].map((edu) => (
                         <div

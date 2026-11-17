@@ -75,7 +75,7 @@ export default function ExperienceTimeline() {
             className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
             style={{ fontFamily: '"Anton", sans-serif', lineHeight: 1.1 }}
           >
-            EXPERIENCE &amp; <span className="text-[#CCFF00]">ROLES</span>
+            EXPERIENCE &amp; <span className="text-[#CCFF00]">LEADERSHIP</span>
           </h2>
           <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
             Combining real-world AI internship experience with high-impact community leadership, developer mentorship, and emergency response.

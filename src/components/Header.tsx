@@ -11,10 +11,9 @@ interface HeaderProps {
 
 const NAV_ITEMS = [
   { label: 'PROJECTS', href: '#projects' },
-  { label: 'SKILLS (NEURON)', href: '#skills' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'ACHIEVEMENTS', href: '#achievements' },
   { label: 'EXPERIENCE', href: '#experience' },
+  { label: 'EDUCATION', href: '#education' },
+  { label: 'SKILLS', href: '#skills' },
   { label: 'CONTACT', href: '#contact' },
 ];
 
@@ -50,7 +49,7 @@ export default function Header({ onOpenDrawer, onOpenTerminal, onNotify }: Heade
       const currentScroll = window.scrollY;
       setScrollProgress(totalScroll > 0 ? (currentScroll / totalScroll) * 100 : 0);
 
-      const sections = ['contact', 'experience', 'achievements', 'about', 'skills', 'projects', 'hero'];
+      const sections = ['contact', 'skills', 'education', 'experience', 'projects', 'hero'];
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {

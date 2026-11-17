@@ -1,18 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Sparkles, Brain, Code2 } from 'lucide-react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Brain, Code2 } from 'lucide-react';
 import ParticleBackground from './components/ParticleBackground';
 import Header from './components/Header';
 import ProjectsSection from './components/ProjectsSection';
-import NeuronSkillsNetwork from './components/NeuronSkillsNetwork';
-import AboutSection from './components/AboutSection';
-import AchievementsSection from './components/AchievementsSection';
 import ExperienceTimeline from './components/ExperienceTimeline';
-import GitHubActivitySection from './components/GitHubActivitySection';
+import EducationSection from './components/EducationSection';
+import NeuronSkillsNetwork from './components/NeuronSkillsNetwork';
 import ContactSection from './components/ContactSection';
 import FooterMarquee from './components/FooterMarquee';
 import InfoDrawer, { type Section } from './components/InfoDrawer';
-import ScrambleText from './components/ScrambleText';
 import CustomCursor from './components/CustomCursor';
 import SocialDock from './components/SocialDock';
 import CommandPalette from './components/CommandPalette';
@@ -21,14 +18,7 @@ import { sound } from './utils/audio';
 
 const ROTATING_WORDS = ['PURPOSE', 'IMPACT', 'INTENT'];
 
-const STATS = [
-  { value: '100%', label: 'SSLC' },
-  { value: '98.5%', label: 'PLUS TWO' },
-  { value: '8.5+', label: 'CGPA' },
-  { value: '2026', label: 'HACKATHON WIN' },
-];
-
-const SKILLS = ['Python', 'Flutter', 'AI/ML', 'RAG', 'PyTorch', 'React', 'TypeScript', 'Firebase'];
+const SKILLS = ['Python', 'Flutter', 'AI / ML', 'RAG', 'PyTorch', 'React', 'TypeScript', 'Firebase'];
 
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -37,14 +27,14 @@ export default function App() {
   const [toastMsg, setToastMsg] = useState<string | null>(null);
   const [wordIndex, setWordIndex] = useState(0);
 
-  // 3D Tilt effect values for Hero Image
+  // 3D Tilt effect values for Hero Image (desktop only)
   const heroRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   const springConfig = { damping: 25, stiffness: 150 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), springConfig);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), springConfig);
 
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!heroRef.current) return;
@@ -60,7 +50,7 @@ export default function App() {
     mouseY.set(0);
   };
 
-  // Rotate headline word every 4s
+  // Rotate decorative headline accent every 4s
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
@@ -148,17 +138,17 @@ export default function App() {
         {/* ── SECTION 1: HERO VIEWPORT ── */}
         <section
           id="hero"
-          className="relative min-h-screen flex flex-col justify-between pt-24 pb-12"
+          className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between pt-20 sm:pt-24 pb-8 lg:pb-12"
         >
           <div className="flex-1 flex flex-col lg:flex-row items-stretch">
-            {/* LEFT PANEL — Text Content */}
-            <div className="relative z-20 flex flex-col justify-center px-8 md:px-16 lg:px-20 py-10 lg:py-0 flex-1 lg:max-w-[55%]">
+            {/* LEFT PANEL — Text Content & Identity */}
+            <div className="relative z-20 flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20 py-6 lg:py-0 flex-1 lg:max-w-[55%]">
               {/* Status Badge */}
               <motion.div
-                initial={{ opacity: 0, y: -16 }}
+                initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-2 mb-8 w-fit px-4 py-2.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm"
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="inline-flex items-center gap-2 mb-4 sm:mb-6 w-fit px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm"
               >
                 <span className="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse flex-shrink-0" />
                 <span
@@ -169,180 +159,134 @@ export default function App() {
                 </span>
               </motion.div>
 
-              {/* Headline with rotating scrambled word */}
-              <div className="mb-8 overflow-visible">
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              {/* Decorative Rotating Accent (aria-hidden for screen reader clarity) */}
+              <div className="flex items-center gap-2 sm:gap-3 mb-2" aria-hidden="true">
+                <span
+                  className="text-white/40 text-[11px] sm:text-xs font-mono tracking-[0.25em] uppercase"
+                  style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                 >
-                  <p
-                    className="uppercase mb-2 font-bold"
-                    style={{
-                      fontFamily: '"Anton", "Impact", "Arial Black", sans-serif',
-                      fontSize: 'clamp(28px, 5vw, 68px)',
-                      WebkitTextStroke: '1px rgba(255,255,255,0.85)',
-                      color: 'transparent',
-                      letterSpacing: '0.04em',
-                      lineHeight: 1.15,
-                    }}
-                  >
-                    BUILD WITH
-                  </p>
-                </motion.div>
-
-                <AnimatePresence mode="wait">
-                  <motion.h1
-                    key={wordIndex}
-                    initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -30, filter: 'blur(8px)' }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                      fontFamily: '"Anton", "Impact", "Arial Black", sans-serif',
-                      fontSize: 'clamp(52px, 9.5vw, 130px)',
-                      color: '#CCFF00',
-                      lineHeight: 1.05,
-                      textShadow: '0 0 45px rgba(204,255,0,0.35)',
-                      letterSpacing: '0.01em',
-                    }}
-                  >
-                    <ScrambleText text={ROTATING_WORDS[wordIndex]} />
-                  </motion.h1>
-                </AnimatePresence>
+                  BUILDING WITH
+                </span>
+                <span className="text-[#CCFF00] font-mono text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase">
+                  {ROTATING_WORDS[wordIndex]}
+                </span>
+                <span className="w-6 sm:w-8 h-px bg-[#CCFF00]/40" />
               </div>
 
-              {/* Subheading & Bio */}
+              {/* Semantic H1: Primary Identity */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.7 }}
-                className="mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-3"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-px bg-[#CCFF00]" />
-                  <span
-                    className="text-[#CCFF00] text-xs tracking-[0.3em] uppercase font-mono font-semibold"
-                    style={{ fontFamily: '"IBM Plex Mono", monospace' }}
-                  >
-                    Roshan Alexander
-                  </span>
-                </div>
-                <p
-                  className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl font-sans"
-                  style={{ lineHeight: 1.8 }}
+                <h1
+                  className="text-white font-bold uppercase tracking-tight"
+                  style={{
+                    fontFamily: '"Anton", "Impact", "Arial Black", sans-serif',
+                    fontSize: 'clamp(42px, 7vw, 92px)',
+                    lineHeight: 1.05,
+                    letterSpacing: '0.01em',
+                  }}
                 >
-                  Computer Science &amp; Engineering at GEC Idukki · AI &amp; Data Science at IIT Guwahati.
-                  Architecting intelligent RAG pipelines, local LLM systems, and cross-platform Flutter experiences.
-                </p>
+                  ROSHAN <span className="text-[#CCFF00]">ALEXANDER</span>
+                </h1>
               </motion.div>
 
-              {/* Skills pills */}
+              {/* Stable, Plain-Language Role Subtitle */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.65, duration: 0.6 }}
-                className="flex flex-wrap gap-2 mb-8"
+                transition={{ delay: 0.45, duration: 0.6 }}
+                className="mb-5"
               >
-                {SKILLS.map((skill, i) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.65 + i * 0.04 }}
-                    onMouseEnter={() => sound.playHover()}
-                    className="skill-tag px-3 py-1 text-xs border border-white/12 text-white/60 rounded-full cursor-default select-none font-mono"
-                    style={{ fontFamily: '"IBM Plex Mono", monospace' }}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
+                <h2
+                  className="text-white/95 text-lg sm:text-xl md:text-2xl font-medium tracking-tight font-sans"
+                  style={{ fontFamily: '"Space Grotesk", sans-serif' }}
+                >
+                  Computer Science and AI student building useful software.
+                </h2>
+              </motion.div>
+
+              {/* Concise 1–2 Sentence Focused Intro */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.6 }}
+                className="mb-6 sm:mb-8"
+              >
+                <p
+                  className="text-white/75 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl font-sans"
+                  style={{ lineHeight: 1.75 }}
+                >
+                  Pursuing a dual degree in Computer Science &amp; Engineering at Government Engineering College, Idukki and Data Science &amp; AI at IIT Guwahati. I build local RAG pipelines, cross-platform mobile apps in Flutter, and computer vision systems.
+                </p>
               </motion.div>
 
               {/* Primary Action Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                className="flex flex-row gap-3 mb-10 flex-wrap"
+                transition={{ delay: 0.7, duration: 0.6 }}
+                className="flex flex-row items-center gap-3 mb-6 sm:mb-8 flex-wrap"
               >
-                <motion.button
+                <button
                   onClick={() => scrollTo('projects')}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
                   onMouseEnter={() => sound.playHover()}
-                  className="group relative overflow-hidden flex items-center gap-2 px-6 py-3.5 bg-[#CCFF00] text-black text-xs font-bold tracking-widest uppercase font-mono shadow-[0_0_25px_rgba(204,255,0,0.3)]"
+                  className="group flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-[#CCFF00] text-black text-xs font-bold tracking-widest uppercase font-mono shadow-[0_0_25px_rgba(204,255,0,0.3)] hover:brightness-110 transition-all rounded-sm min-h-[44px]"
+                  aria-label="Scroll to featured projects"
                 >
-                  <Code2 size={14} />
+                  <Code2 size={15} />
                   <span>VIEW PROJECTS</span>
                   <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
-                </motion.button>
+                </button>
 
-                <motion.button
-                  onClick={() => scrollTo('skills')}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  onMouseEnter={() => sound.playHover()}
-                  className="group flex items-center gap-2 px-6 py-3.5 border border-[#88aaff]/50 text-[#88aaff] text-xs tracking-widest uppercase hover:bg-[#88aaff]/10 transition-all duration-300 font-mono"
-                >
-                  <Brain size={14} />
-                  <span>NEURON SKILLS</span>
-                  <Sparkles size={12} className="text-[#CCFF00]" />
-                </motion.button>
-
-                <motion.button
+                <button
                   onClick={() => scrollTo('contact')}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
                   onMouseEnter={() => sound.playHover()}
-                  className="group flex items-center gap-2 px-5 py-3.5 border border-white/20 text-white/80 text-xs tracking-widest uppercase hover:border-[#CCFF00]/50 hover:text-white transition-all duration-300 font-mono"
+                  className="group flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 border border-white/20 text-white/90 text-xs font-bold tracking-widest uppercase hover:border-[#CCFF00]/60 hover:text-white transition-all font-mono rounded-sm min-h-[44px]"
+                  aria-label="Scroll to contact section"
                 >
                   <span>CONTACT</span>
                   <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
-                </motion.button>
+                </button>
+
+                <button
+                  onClick={() => scrollTo('skills')}
+                  onMouseEnter={() => sound.playHover()}
+                  className="hidden sm:flex items-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 border border-[#88aaff]/40 text-[#88aaff] text-xs tracking-widest uppercase hover:bg-[#88aaff]/10 transition-all font-mono rounded-sm min-h-[44px]"
+                  aria-label="Scroll to skills network"
+                >
+                  <Brain size={14} />
+                  <span>SKILLS NETWORK</span>
+                </button>
               </motion.div>
 
-              {/* Key Academic & Career Metrics */}
+              {/* High-credibility highlights & Core Skills */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.95, duration: 0.7 }}
-                className="grid grid-cols-4 gap-4 max-w-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.85, duration: 0.6 }}
+                className="flex flex-wrap items-center gap-2"
               >
-                {STATS.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.95 + i * 0.08 }}
-                    className="text-left"
+                {SKILLS.map((skill) => (
+                  <span
+                    key={skill}
+                    className="skill-tag px-2.5 py-1 text-[11px] border border-white/10 text-white/60 rounded-full font-mono select-none"
+                    style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                   >
-                    <div
-                      className="text-[#CCFF00] font-bold mb-0.5"
-                      style={{
-                        fontFamily: '"Anton", sans-serif',
-                        fontSize: 'clamp(20px, 2.4vw, 28px)',
-                      }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div
-                      className="text-white/40 text-[10px] leading-tight tracking-wider uppercase font-mono"
-                      style={{ fontFamily: '"IBM Plex Mono", monospace' }}
-                    >
-                      {stat.label}
-                    </div>
-                  </motion.div>
+                    {skill}
+                  </span>
                 ))}
               </motion.div>
             </div>
 
-            {/* RIGHT PANEL — Holographic 3D Hero Profile Photo */}
+            {/* RIGHT PANEL — Responsive Hero Profile Photo */}
             <div
               ref={heroRef}
               onMouseMove={handleHeroMouseMove}
               onMouseLeave={handleHeroMouseLeave}
-              className="relative z-10 flex-shrink-0 lg:w-[45%] flex items-end justify-center lg:justify-end overflow-hidden select-none"
+              className="relative z-10 flex-shrink-0 lg:w-[45%] flex items-end justify-center lg:justify-end overflow-hidden select-none px-6 sm:px-10 lg:px-0 pt-4 lg:pt-0"
               style={{ perspective: 1200 }}
             >
               {/* Ambient Radial Accent */}
@@ -353,45 +297,38 @@ export default function App() {
                 }}
               />
 
-              {/* 3D Tilted Photo Frame */}
+              {/* Tilted Photo Frame with Compact Mobile Height */}
               <motion.div
                 style={{
                   rotateX,
                   rotateY,
                   transformStyle: 'preserve-3d',
-                  height: 'clamp(380px, 80vh, 760px)',
-                  width: 'auto',
                 }}
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative group"
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group h-[260px] sm:h-[340px] md:h-[420px] lg:h-[clamp(440px,75vh,720px)] w-auto max-w-full"
               >
-                {/* Vertical neon accent indicator line */}
-                <div
-                  className="absolute left-0 top-1/3 w-px h-28 bg-gradient-to-b from-transparent via-[#CCFF00]/50 to-transparent hidden lg:block pointer-events-none"
-                  style={{ transform: 'translateX(-28px)' }}
-                />
-
-                {/* Photo */}
+                {/* Photo with clean gradient mask */}
                 <img
                   src="/hero.jpg"
-                  alt="Roshan Alexander — Computer Science & AI"
+                  alt="Roshan Alexander — Computer Science and AI student"
                   className="h-full w-auto object-cover object-top transition-transform duration-700 group-hover:scale-[1.01]"
                   style={{
                     filter: 'contrast(1.08) brightness(0.96)',
-                    maskImage: 'linear-gradient(to bottom, black 0%, black 80%, transparent 100%), linear-gradient(to left, black 0%, black 70%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 80%, transparent 100%)',
+                    maskImage: 'linear-gradient(to bottom, black 0%, black 82%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 82%, transparent 100%)',
                     maxWidth: '100%',
                   }}
+                  loading="eager"
                 />
 
                 {/* Badge 1: Hackathon Winner */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.1, duration: 0.6 }}
-                  className="absolute top-8 left-0 lg:-left-6 bg-[#CCFF00] text-black px-4 py-2.5 hidden md:block shadow-2xl"
+                  transition={{ delay: 1.0, duration: 0.6 }}
+                  className="absolute top-6 left-0 lg:-left-6 bg-[#CCFF00] text-black px-3.5 py-2 hidden md:block shadow-2xl"
                   style={{
                     fontFamily: '"IBM Plex Mono", monospace',
                     transform: 'translateZ(30px)',
@@ -401,34 +338,36 @@ export default function App() {
                     <span>🏆</span>
                     <span>HACKATHON WINNER</span>
                   </div>
-                  <div className="text-[10px] tracking-wide text-black/80 font-bold">IndicClaimVerifier 2026</div>
+                  <div className="text-[10px] tracking-wide text-black/80 font-bold">
+                    IndicClaimVerifier · 2026
+                  </div>
                 </motion.div>
 
                 {/* Badge 2: Dual University Track */}
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.3, duration: 0.6 }}
-                  className="absolute bottom-16 right-0 lg:-right-4 bg-white/5 border border-white/10 backdrop-blur-md px-4 py-3 hidden md:block shadow-2xl"
+                  transition={{ delay: 1.2, duration: 0.6 }}
+                  className="absolute bottom-12 right-0 lg:-right-4 bg-[#050616]/90 border border-white/15 backdrop-blur-md px-4 py-3 hidden md:block shadow-2xl"
                   style={{ transform: 'translateZ(25px)' }}
                 >
                   <div
                     className="text-white/95 text-xs font-bold mb-1"
                     style={{ fontFamily: '"Space Grotesk", sans-serif' }}
                   >
-                    GEC Idukki
+                    Government Engineering College, Idukki
                   </div>
                   <div
-                    className="text-white/50 text-[10px] tracking-wider font-mono"
+                    className="text-white/60 text-[10px] tracking-wider font-mono"
                     style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                   >
-                    B.Tech CSE · 2024–2028 · CGPA 8.5+
+                    B.Tech in CSE · 2024–2028 · CGPA 8.5+
                   </div>
                   <div
                     className="text-[#88aaff] text-[10px] tracking-wider mt-1 font-mono font-medium"
                     style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                   >
-                    IIT Guwahati · BS AI &amp; DS
+                    IIT Guwahati · B.Sc. in Data Science &amp; AI
                   </div>
                 </motion.div>
               </motion.div>
@@ -436,50 +375,45 @@ export default function App() {
           </div>
 
           {/* Animated Scroll Prompt Indicator */}
-          <div className="relative z-20 flex flex-col items-center justify-center pt-8">
+          <div className="relative z-20 flex flex-col items-center justify-center pt-4 sm:pt-6">
             <button
               onClick={() => scrollTo('projects')}
-              className="group flex flex-col items-center gap-2 text-white/35 hover:text-[#CCFF00] transition-colors"
+              className="group flex flex-col items-center gap-1.5 text-white/40 hover:text-[#CCFF00] transition-colors"
+              aria-label="Scroll to featured projects"
             >
               <span
-                className="text-[10px] font-mono tracking-[0.3em] uppercase"
+                className="text-[10px] font-mono tracking-[0.25em] uppercase"
                 style={{ fontFamily: '"IBM Plex Mono", monospace' }}
               >
-                SCROLL TO EXPLORE ARCHITECTURE
+                SCROLL TO EXPLORE
               </span>
-              <div className="w-6 h-10 rounded-full border border-white/20 group-hover:border-[#CCFF00]/50 flex items-start justify-center p-1.5 transition-colors">
+              <div className="w-5 h-8 rounded-full border border-white/20 group-hover:border-[#CCFF00]/50 flex items-start justify-center p-1 transition-colors">
                 <motion.div
-                  animate={{ y: [0, 12, 0] }}
+                  animate={{ y: [0, 8, 0] }}
                   transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-                  className="w-1.5 h-2 rounded-full bg-[#CCFF00]"
+                  className="w-1 h-1.5 rounded-full bg-[#CCFF00]"
                 />
               </div>
             </button>
           </div>
         </section>
 
-        {/* ── SECTION 2: PROJECTS SHOWCASE ── */}
+        {/* ── SECTION 2: FEATURED PROJECTS ── */}
         <ProjectsSection onNotify={showToast} />
 
-        {/* ── SECTION 3: NEURON SKILLS NETWORK ── */}
-        <NeuronSkillsNetwork onNotify={showToast} />
-
-        {/* ── SECTION 4: ABOUT & DUAL-DEGREE TRACK ── */}
-        <AboutSection />
-
-        {/* ── SECTION 5: ACHIEVEMENTS & HONORS ── */}
-        <AchievementsSection />
-
-        {/* ── SECTION 6: EXPERIENCE & ROLES TIMELINE ── */}
+        {/* ── SECTION 3: EXPERIENCE & LEADERSHIP ── */}
         <ExperienceTimeline />
 
-        {/* ── SECTION 7: GITHUB LIVE ACTIVITY & CONSOLE ── */}
-        <GitHubActivitySection />
+        {/* ── SECTION 4: EDUCATION & CREDENTIALS ── */}
+        <EducationSection />
 
-        {/* ── SECTION 8: CONTACT TRANSMISSION STATION ── */}
+        {/* ── SECTION 5: SKILLS (NEURON NETWORK) ── */}
+        <NeuronSkillsNetwork onNotify={showToast} />
+
+        {/* ── SECTION 6: CONTACT TRANSMISSION ── */}
         <ContactSection onNotify={showToast} />
 
-        {/* ── FOOTER & DYNAMIC MARQUEE ── */}
+        {/* ── FOOTER & MARQUEE ── */}
         <FooterMarquee />
 
         {/* Floating Social Connect Dock */}

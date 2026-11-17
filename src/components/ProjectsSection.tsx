@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Code2, ArrowUpRight, Cpu, Eye, Radio } from 'lucide-react';
+import { Sparkles, Code2, ArrowUpRight, Eye, Radio } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 const GithubIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
   </svg>
 );
@@ -15,9 +15,10 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
   // Tab states for interactive inspection
-  const [indicTab, setIndicTab] = useState<'overview' | 'pipeline'>('overview');
-  const [geoTab, setGeoTab] = useState<'overview' | 'radar'>('overview');
-  const [wasteTab, setWasteTab] = useState<'overview' | 'metrics'>('overview');
+  const [indicTab, setIndicTab] = useState<'evidence' | 'architecture'>('evidence');
+  const [geoTab, setGeoTab] = useState<'evidence' | 'radar'>('evidence');
+  const [traceTab, setTraceTab] = useState<'evidence' | 'pipeline'>('evidence');
+  const [wasteTab, setWasteTab] = useState<'evidence' | 'classes'>('evidence');
 
   return (
     <section id="projects" className="relative py-28 px-6 md:px-12 lg:px-20 border-t border-white/[0.08]">
@@ -30,12 +31,12 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
       />
 
       <div className="max-w-7xl mx-auto">
-        {/* Section Header with generous breathing room */}
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-10 border-b border-white/[0.08] mb-16">
           <div>
             <div className="flex items-center gap-2 mb-3 font-mono text-[11px] text-[#CCFF00] tracking-[0.3em] uppercase">
               <Code2 size={15} className="text-[#CCFF00]" />
-              <span>CURATED FLAGSHIP ARCHITECTURES</span>
+              <span>VERIFIABLE WORK &amp; CODEBASES</span>
             </div>
             <h2
               className="text-4xl sm:text-5xl md:text-6xl text-white uppercase font-bold tracking-tight"
@@ -43,9 +44,8 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
             >
               FEATURED <span className="text-[#CCFF00]">PROJECTS</span>
             </h2>
-            <p className="text-white/65 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
-              An elite selection of engineered systems across local RAG artificial intelligence,
-              GPS multiplayer gaming in Flutter, real-time computer vision, and cryptographic audit logs.
+            <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
+              Engineered software and AI systems evaluated by problem, individual contribution, technical implementation, and verifiable outcomes.
             </p>
           </div>
 
@@ -55,6 +55,7 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
             rel="noopener noreferrer"
             onMouseEnter={() => sound.playHover()}
             className="flex items-center gap-3 px-6 py-3.5 bg-white/[0.03] border border-white/15 hover:border-[#CCFF00]/60 text-white/90 hover:text-white text-xs font-mono tracking-widest uppercase transition-all duration-300 rounded-sm w-fit group shadow-lg"
+            aria-label="View Roshan Alexander's GitHub profile"
           >
             <GithubIcon />
             <span>MORE REPOSITORIES ON GITHUB</span>
@@ -63,16 +64,16 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════════════════
-            BENTO 1: HERO FLAGSHIP — IndicClaimVerifier (FactCheck AI)
+            PROJECT 1 (PRIMARY FLAGSHIP): IndicClaimVerifier (FactCheck AI)
             ══════════════════════════════════════════════════════════════════════════ */}
-        <motion.div
+        <motion.article
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-2xl border border-[#CCFF00]/30 bg-gradient-to-br from-[#0c0d22] via-[#070719] to-[#040212] p-8 md:p-12 mb-12 shadow-[0_0_50px_rgba(204,255,0,0.06)] overflow-hidden"
+          className="relative rounded-2xl border border-[#CCFF00]/30 bg-gradient-to-br from-[#0c0d24] via-[#07071c] to-[#040212] p-8 md:p-12 mb-14 shadow-[0_0_50px_rgba(204,255,0,0.06)] overflow-hidden"
         >
-          {/* Subtle Cyber Grid Backing */}
+          {/* Subtle Cyber Grid */}
           <div
             className="absolute inset-0 pointer-events-none opacity-20"
             style={{
@@ -88,9 +89,9 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 <div className="flex items-center gap-3 mb-4 flex-wrap">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#CCFF00] text-black tracking-wider uppercase shadow-md">
                     <Sparkles size={12} className="fill-current" />
-                    <span>🏆 2026 HACKATHON WINNER</span>
+                    <span>🏆 1ST PLACE WINNER · 2026 HACKATHON</span>
                   </span>
-                  <span className="text-white/40 text-xs font-mono">
+                  <span className="text-white/50 text-xs font-mono">
                     AI &amp; RAG ARCHITECTURE · 2026
                   </span>
                 </div>
@@ -102,69 +103,86 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                   IndicClaimVerifier <span className="text-[#CCFF00]">(FactCheck AI)</span>
                 </h3>
 
-                <p className="text-white/75 text-base md:text-lg leading-relaxed font-sans mb-6">
-                  An automated claim verification and evidence-retrieval framework engineered specifically for Indic languages and regional dialects.
-                  The system ingests viral or disputed claims, retrieves grounded factual evidence from dense knowledge bases, and computes verifiable truth probability scores—completely offline with local LLMs.
+                <p className="text-white/80 text-base md:text-lg leading-relaxed font-sans mb-6">
+                  An automated retrieval-augmented generation (RAG) framework engineered specifically for fact-checking claims in Indic languages and regional dialects without external cloud API dependencies.
                 </p>
 
-                {/* Sub-tabs to inspect architecture */}
+                {/* Structured Evidence Tabs */}
                 <div className="flex items-center gap-2 mb-6">
                   <button
                     onClick={() => {
                       sound.playClick();
-                      setIndicTab('overview');
+                      setIndicTab('evidence');
                     }}
                     className={`px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded transition-colors ${
-                      indicTab === 'overview'
+                      indicTab === 'evidence'
                         ? 'bg-white/10 text-[#CCFF00] border border-[#CCFF00]/40'
-                        : 'text-white/40 hover:text-white'
+                        : 'text-white/50 hover:text-white'
                     }`}
                   >
-                    System Design
+                    Evidence Breakdown
                   </button>
                   <button
                     onClick={() => {
                       sound.playClick();
-                      setIndicTab('pipeline');
+                      setIndicTab('architecture');
                     }}
                     className={`px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded transition-colors ${
-                      indicTab === 'pipeline'
+                      indicTab === 'architecture'
                         ? 'bg-white/10 text-[#CCFF00] border border-[#CCFF00]/40'
-                        : 'text-white/40 hover:text-white'
+                        : 'text-white/50 hover:text-white'
                     }`}
                   >
                     RAG Pipeline Steps
                   </button>
                 </div>
 
-                {indicTab === 'overview' ? (
-                  <div className="p-5 rounded-xl border border-white/10 bg-white/[0.02] mb-8 space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#CCFF00] font-bold tracking-wider uppercase">
-                      <Cpu size={14} />
-                      <span>OFFLINE LOCAL INFERENCE ENGINE</span>
+                {indicTab === 'evidence' ? (
+                  <div className="p-5 rounded-xl border border-white/10 bg-white/[0.02] mb-8 space-y-3 text-sm font-sans">
+                    <div>
+                      <span className="text-[#CCFF00] font-mono text-xs font-bold uppercase tracking-wider block mb-1">
+                        PROBLEM
+                      </span>
+                      <p className="text-white/75 leading-relaxed">
+                        Viral misinformation in regional Indian languages escapes automated verification because mainstream fact-checking APIs predominantly focus on English and incur recurring cloud API fees and network latency.
+                      </p>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed font-sans">
-                      Unlike cloud-dependent fact-checkers, IndicClaimVerifier leverages quantized <strong>Ollama + Qwen models</strong> and <strong>FAISS vector indexes</strong>.
-                      This delivers sub-second response times, zero token billing overhead, and bulletproof user privacy for sensitive data.
-                    </p>
+
+                    <div>
+                      <span className="text-[#CCFF00] font-mono text-xs font-bold uppercase tracking-wider block mb-1">
+                        WHAT I BUILT &amp; MY CONTRIBUTION
+                      </span>
+                      <p className="text-white/75 leading-relaxed">
+                        Designed the full end-to-end RAG architecture. Implemented multilingual Indic text normalization, tokenization, dense semantic retrieval using FAISS vector indexing, and local inference synthesis with quantized Qwen models via Ollama.
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className="text-[#CCFF00] font-mono text-xs font-bold uppercase tracking-wider block mb-1">
+                        VERIFIABLE RESULT
+                      </span>
+                      <p className="text-white/75 leading-relaxed">
+                        Awarded <strong>1st Place at the 2026 Hackathon</strong> for technical execution, local privacy preservation, and dialect-handling capability.
+                      </p>
+                    </div>
                   </div>
                 ) : (
                   <div className="p-5 rounded-xl border border-white/10 bg-white/[0.02] mb-8 space-y-2.5 font-mono text-xs">
                     <div className="flex items-start gap-2 text-white/80">
                       <span className="text-[#CCFF00] font-bold">01.</span>
-                      <span>Multilingual text normalization &amp; Indic tokenization</span>
+                      <span>Multilingual text normalization &amp; Indic dialect chunking</span>
                     </div>
                     <div className="flex items-start gap-2 text-white/80">
                       <span className="text-[#CCFF00] font-bold">02.</span>
-                      <span>High-dimensional semantic chunk retrieval via FAISS &amp; ChromaDB</span>
+                      <span>High-dimensional semantic embedding retrieval via FAISS vector database</span>
                     </div>
                     <div className="flex items-start gap-2 text-white/80">
                       <span className="text-[#CCFF00] font-bold">03.</span>
-                      <span>Cross-encoder semantic reranking to discard hallucinations</span>
+                      <span>Cross-encoder reranking to suppress false positives and hallucinated context</span>
                     </div>
                     <div className="flex items-start gap-2 text-white/80">
                       <span className="text-[#CCFF00] font-bold">04.</span>
-                      <span>Local LLM synthesis generating citation-backed verdicts</span>
+                      <span>Quantized local LLM synthesis generating citation-backed verdicts</span>
                     </div>
                   </div>
                 )}
@@ -176,7 +194,7 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                   {['Python', 'RAG', 'Ollama', 'Qwen LLM', 'LangChain', 'FAISS', 'Indic NLP', 'ChromaDB'].map((t) => (
                     <span
                       key={t}
-                      className="text-xs px-3 py-1 rounded-full border border-white/10 text-white/70 bg-white/[0.03] font-mono"
+                      className="text-xs px-3 py-1 rounded-full border border-white/10 text-white/75 bg-white/[0.03] font-mono"
                     >
                       {t}
                     </span>
@@ -190,19 +208,23 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                     rel="noopener noreferrer"
                     onMouseEnter={() => sound.playHover()}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#CCFF00] text-black font-mono font-bold text-xs uppercase tracking-widest rounded hover:brightness-110 transition-all shadow-[0_0_20px_rgba(204,255,0,0.3)]"
+                    aria-label="View Hackathon details and repository on GitHub"
                   >
                     <GithubIcon />
-                    <span>VIEW WINNING CODEBASE ↗</span>
+                    <span>HACKATHON CODEBASE · REPO ↗</span>
                   </a>
                   <button
                     onClick={() => {
                       sound.playClick();
                       if (onNotify) onNotify('IndicClaimVerifier won 1st Place in the 2026 Hackathon!');
                     }}
-                    className="px-5 py-3 border border-white/20 text-white/70 hover:text-white text-xs font-mono rounded hover:border-white/40 transition-colors"
+                    className="px-5 py-3 border border-white/20 text-white/75 hover:text-white text-xs font-mono rounded hover:border-white/40 transition-colors"
                   >
                     AWARD DETAILS
                   </button>
+                  <span className="text-white/40 text-xs font-mono italic">
+                    [Repository: Private / Available on request]
+                  </span>
                 </div>
               </div>
             </div>
@@ -213,70 +235,70 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
                   <span className="text-white/60 text-[11px] tracking-wider uppercase">
-                    SIMULATED PIPELINE TELEMETRY
+                    SIMULATED INTERFACE CONCEPT
                   </span>
                 </div>
                 <span className="text-[#CCFF00] text-[10px] bg-[#CCFF00]/10 px-2 py-0.5 rounded border border-[#CCFF00]/20">
-                  VERIFIED CLAIM
+                  ILLUSTRATIVE
                 </span>
               </div>
 
-              {/* Verification Stream simulation */}
+              {/* Verification Stream concept */}
               <div className="space-y-3.5 text-white/75 leading-relaxed">
                 <div className="p-2.5 rounded bg-white/[0.03] border border-white/5">
-                  <div className="text-white/35 text-[10px] uppercase mb-1">INPUT DISPUTED CLAIM</div>
-                  <div className="text-white text-xs">
+                  <div className="text-white/40 text-[10px] uppercase mb-1">SAMPLE DISPUTED CLAIM</div>
+                  <div className="text-white text-xs font-sans">
                     "Historical monument restoration approved under regional state preservation grant."
                   </div>
                 </div>
 
                 <div className="space-y-2 text-[11px]">
                   <div className="flex items-center justify-between text-white/50">
-                    <span>EMBEDDING COSINE SIMILARITY</span>
-                    <span className="text-[#CCFF00] font-bold">0.964</span>
+                    <span>SEMANTIC COSINE SIMILARITY</span>
+                    <span className="text-[#CCFF00] font-bold">High Alignment</span>
                   </div>
                   <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="w-[96%] h-full bg-[#CCFF00]" />
+                    <div className="w-[88%] h-full bg-[#CCFF00]" />
                   </div>
                 </div>
 
                 <div className="p-3 rounded bg-white/[0.02] border border-white/5 space-y-1.5 text-[11px]">
                   <div className="text-white/40 text-[10px] uppercase">EVIDENCE RETRIEVAL (FAISS)</div>
-                  <div className="text-white/80 leading-relaxed">
-                    Source: Verified Public Archive #2026-B
+                  <div className="text-white/80 leading-relaxed font-sans">
+                    Matched Citation: Regional Public Preservation Gazette Archive #2026-B
                   </div>
                   <div className="text-[#CCFF00] text-[10px] font-bold">
-                    STATUS: 100% FACTUAL MATCH (ZERO CONFLICT)
+                    VERDICT: SUPPORTED BY ARCHIVE EVIDENCE
                   </div>
                 </div>
 
-                <div className="pt-2 text-white/40 text-[10px] flex items-center justify-between">
-                  <span>INFERENCE: QWEN 2.5 LOCAL</span>
-                  <span>LATENCY: 142ms</span>
+                <div className="pt-2 text-white/40 text-[10px] flex items-center justify-between border-t border-white/5">
+                  <span>MODEL: QUANTIZED QWEN (LOCAL)</span>
+                  <span className="text-white/30">[Simulated Display]</span>
                 </div>
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.article>
 
         {/* ══════════════════════════════════════════════════════════════════════════
-            BENTO ROW 2: GeoSeize (7-cols) + Nothing X Web (5-cols)
+            PROJECT 2 & 3: GeoSeize (7-cols) + Trace Vision AI (5-cols)
             ══════════════════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-          {/* 1. GeoSeize (Flutter GPS Game) */}
-          <motion.div
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14">
+          {/* Project 2: GeoSeize (Flutter GPS Game) */}
+          <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-7 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0a0a20] to-[#040212] p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-300"
+            className="lg:col-span-7 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0a0a22] to-[#040212] p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-300 shadow-xl"
           >
             <div>
-              <div className="flex items-center justify-between gap-3 mb-4">
+              <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
                 <span className="text-xs px-3 py-1 rounded-full font-mono font-bold bg-[#88aaff]/15 text-[#88aaff] border border-[#88aaff]/30 uppercase tracking-wider">
                   FLUTTER · MULTIPLAYER GPS CONQUEST
                 </span>
-                <span className="text-white/40 text-xs font-mono">2025</span>
+                <span className="text-white/40 text-xs font-mono">VERIFIED REPO · 2025</span>
               </div>
 
               <h3
@@ -286,7 +308,7 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 GeoSeize <span className="text-[#88aaff]">Fitness Game</span>
               </h3>
 
-              <p className="text-white/70 text-base leading-relaxed font-sans mb-6">
+              <p className="text-white/80 text-base leading-relaxed font-sans mb-6">
                 A real-world territory conquest fitness game built with Flutter.
                 Players physically run, walk, or cycle to enclose real geographic parcels with GPS coordinates,
                 capturing map polygons for their squad while battling rivals across live Firebase-synced leaderboards.
@@ -295,44 +317,61 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
               {/* Sub-tabs */}
               <div className="flex items-center gap-2 mb-5">
                 <button
-                  onClick={() => setGeoTab('overview')}
+                  onClick={() => setGeoTab('evidence')}
                   className={`px-3 py-1 text-xs font-mono uppercase rounded transition-colors ${
-                    geoTab === 'overview' ? 'bg-white/10 text-[#88aaff] border border-[#88aaff]/40' : 'text-white/40'
+                    geoTab === 'evidence' ? 'bg-white/10 text-[#88aaff] border border-[#88aaff]/40' : 'text-white/50'
                   }`}
                 >
-                  Architecture
+                  Project Evidence
                 </button>
                 <button
                   onClick={() => setGeoTab('radar')}
                   className={`px-3 py-1 text-xs font-mono uppercase rounded transition-colors ${
-                    geoTab === 'radar' ? 'bg-white/10 text-[#88aaff] border border-[#88aaff]/40' : 'text-white/40'
+                    geoTab === 'radar' ? 'bg-white/10 text-[#88aaff] border border-[#88aaff]/40' : 'text-white/50'
                   }`}
                 >
-                  Live Radar View
+                  Radar Concept
                 </button>
               </div>
 
-              {geoTab === 'overview' ? (
-                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2">
-                  <div className="text-xs font-mono text-[#88aaff] font-bold uppercase">
-                    GEOSPATIAL ALGORITHMIC ENGINE
+              {geoTab === 'evidence' ? (
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2.5 text-xs font-sans">
+                  <div>
+                    <span className="text-[#88aaff] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      PROBLEM &amp; OBJECTIVE
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Transform passive physical exercise into an engaging multiplayer gaming experience through real-time outdoor territory conquest.
+                    </p>
                   </div>
-                  <p className="text-white/65 text-xs md:text-sm font-sans leading-relaxed">
-                    Implements ray-casting point-in-polygon containment, Google Maps Flutter SDK,
-                    geofencing background tracking, and Firebase Firestore transactional updates with full Dart unit testing.
-                  </p>
+                  <div>
+                    <span className="text-[#88aaff] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      WHAT I BUILT &amp; MY CONTRIBUTION
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Implemented point-in-polygon ray-casting math in Dart, integrated the Google Maps Flutter SDK with custom polygon styling, and wired Firebase Firestore transactional sync for live squad territory ownership.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#88aaff] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      VERIFIABLE RESULT
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Open-source codebase on GitHub with unit-tested geometry logic and active mobile development builds.
+                    </p>
+                  </div>
                 </div>
               ) : (
                 <div className="p-4 rounded-xl border border-white/10 bg-[#020014] mb-6 font-mono text-xs space-y-2">
                   <div className="flex items-center justify-between text-[#88aaff]">
                     <span className="flex items-center gap-1.5">
                       <Radio size={13} className="animate-pulse" />
-                      <span>GPS RADAR ACTIVE</span>
+                      <span>SIMULATED RADAR CONCEPT</span>
                     </span>
-                    <span>COORDS: 9.52° N, 76.78° E</span>
+                    <span className="text-white/40 text-[10px]">CONCEPT VIEW</span>
                   </div>
-                  <div className="text-white/60 text-[11px] leading-relaxed">
-                    Squad Alpha: 4 Parcels Seized · Speed: 14.2 km/h · Accuracy: ±3m
+                  <div className="text-white/70 text-[11px] leading-relaxed">
+                    Polygon Seizure: Ray-Casting Algorithm Evaluates GPS Boundary Coordinates
                   </div>
                 </div>
               )}
@@ -341,7 +380,7 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
             <div>
               <div className="flex flex-wrap gap-2 mb-6">
                 {['Flutter', 'Dart', 'Google Maps API', 'Firebase Firestore', 'Geofencing', 'State Management'].map((t) => (
-                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/60 font-mono">
+                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/70 font-mono">
                     {t}
                   </span>
                 ))}
@@ -352,99 +391,29 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={() => sound.playHover()}
-                className="inline-flex items-center gap-2 text-xs font-mono text-white/90 hover:text-[#88aaff] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono text-[#88aaff] hover:text-white transition-colors"
+                aria-label="View GeoSeize repository on GitHub"
               >
                 <GithubIcon />
                 <span>EXPLORE GEOSEIZE ON GITHUB →</span>
               </a>
             </div>
-          </motion.div>
+          </motion.article>
 
-          {/* 2. Nothing X Web Interface (5-cols) */}
-          <motion.div
+          {/* Project 3: Trace Vision AI (Computer Vision & Hand Tracking) */}
+          <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-5 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0c16] to-[#04020c] p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-300"
+            className="lg:col-span-5 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c081c] to-[#04020c] p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-300 shadow-xl"
           >
             <div>
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="text-xs px-3 py-1 rounded-full font-mono font-bold bg-white/10 text-white border border-white/20 uppercase tracking-wider">
-                  FUTURISTIC UI · HARDWARE EMULATION
-                </span>
-                <span className="text-white/40 text-xs font-mono">2025</span>
-              </div>
-
-              <h3
-                className="text-3xl md:text-4xl text-white font-bold uppercase tracking-wide leading-tight mb-3"
-                style={{ fontFamily: '"Anton", sans-serif' }}
-              >
-                Nothing X <span className="text-white/50">Web OS</span>
-              </h3>
-
-              <p className="text-white/70 text-base leading-relaxed font-sans mb-6">
-                High-fidelity web application recreating the unmistakable dot-matrix design language and responsive audio feedback of Nothing OS and Nothing X wireless earphone hardware.
-              </p>
-
-              {/* Glyph Dot Matrix Visual Element */}
-              <div className="p-5 rounded-xl border border-white/10 bg-black/60 mb-6 space-y-3 font-mono">
-                <div className="flex items-center justify-between text-white/50 text-xs">
-                  <span>GLYPH INTERFACE</span>
-                  <span className="text-white">NOTHING_EAR(a)</span>
-                </div>
-                <div className="flex items-center gap-2 justify-center py-2">
-                  <div className="w-8 h-1 rounded-full bg-white shadow-[0_0_10px_#fff]" />
-                  <div className="w-3 h-1 rounded-full bg-white/40" />
-                  <div className="w-12 h-1 rounded-full bg-white shadow-[0_0_10px_#fff]" />
-                </div>
-                <div className="text-center text-[10px] text-white/40 tracking-widest">
-                  ACTIVE NOISE CANCELLATION: TRANSDUCER ON
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {['TypeScript', 'Tailwind CSS', 'Web Audio API', 'Component Architecture'].map((t) => (
-                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/60 font-mono">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href="https://github.com/roshanalexander22/Nothing-x-app"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={() => sound.playHover()}
-                className="inline-flex items-center gap-2 text-xs font-mono text-white/90 hover:text-white transition-colors"
-              >
-                <GithubIcon />
-                <span>EXPLORE NOTHING X ON GITHUB →</span>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ══════════════════════════════════════════════════════════════════════════
-            BENTO ROW 3: Trace AI (5-cols) + Automated Waste Detection (7-cols)
-            ══════════════════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-          {/* 3. Trace AI (Computer Vision) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0818] to-[#04020c] p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-300"
-          >
-            <div>
-              <div className="flex items-center justify-between gap-3 mb-4">
+              <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
                 <span className="text-xs px-3 py-1 rounded-full font-mono font-bold bg-[#ff88aa]/15 text-[#ff88aa] border border-[#ff88aa]/30 uppercase tracking-wider">
                   COMPUTER VISION · GESTURE AI
                 </span>
-                <span className="text-white/40 text-xs font-mono">2025</span>
+                <span className="text-white/40 text-xs font-mono">VERIFIED REPO · 2025</span>
               </div>
 
               <h3
@@ -454,26 +423,74 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 Trace <span className="text-[#ff88aa]">Vision AI</span>
               </h3>
 
-              <p className="text-white/70 text-base leading-relaxed font-sans mb-6">
-                An interactive perceptual vision system using a device's front-facing camera to understand real-time hand gestures, track kinematic joint positions, and drive responsive canvas animations.
+              <p className="text-white/80 text-base leading-relaxed font-sans mb-6">
+                An interactive perceptual vision system using front-facing cameras to track real-time hand joint kinematics and drive touchless interactions directly in the browser.
               </p>
 
-              {/* Hand Kinematics Visual */}
-              <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#ff88aa] font-bold">
-                  <Eye size={14} />
-                  <span>21-POINT SKELETON ESTIMATION</span>
-                </div>
-                <p className="text-white/65 text-xs md:text-sm font-sans leading-relaxed">
-                  Real-time normalized coordinate landmark mapping and gesture classification with zero server latency.
-                </p>
+              {/* Sub-tabs */}
+              <div className="flex items-center gap-2 mb-5">
+                <button
+                  onClick={() => setTraceTab('evidence')}
+                  className={`px-3 py-1 text-xs font-mono uppercase rounded transition-colors ${
+                    traceTab === 'evidence' ? 'bg-white/10 text-[#ff88aa] border border-[#ff88aa]/40' : 'text-white/50'
+                  }`}
+                >
+                  Evidence Breakdown
+                </button>
+                <button
+                  onClick={() => setTraceTab('pipeline')}
+                  className={`px-3 py-1 text-xs font-mono uppercase rounded transition-colors ${
+                    traceTab === 'pipeline' ? 'bg-white/10 text-[#ff88aa] border border-[#ff88aa]/40' : 'text-white/50'
+                  }`}
+                >
+                  Kinematic Pipeline
+                </button>
               </div>
+
+              {traceTab === 'evidence' ? (
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2.5 text-xs font-sans">
+                  <div>
+                    <span className="text-[#ff88aa] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      PROBLEM
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Touchless computer interfaces typically rely on expensive dedicated hardware or upload raw webcam video to cloud servers, introducing severe privacy and bandwidth concerns.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#ff88aa] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      WHAT I BUILT &amp; MY CONTRIBUTION
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Engineered a client-side vision pipeline using MediaPipe and HTML5 Canvas to track 21 hand landmarks completely in the local browser without server roundtrips.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#ff88aa] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      VERIFIABLE RESULT
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Published open-source repository running in modern browsers with responsive real-time landmark classification.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#ff88aa] font-bold">
+                    <Eye size={14} />
+                    <span>21-POINT HAND SKELETON ESTIMATION</span>
+                  </div>
+                  <p className="text-white/70 text-xs font-sans leading-relaxed">
+                    Processes normalized 3D hand coordinates for thumb, knuckle, and fingertip joints directly in the browser via client-side Web APIs.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['TypeScript', 'Computer Vision', 'OpenCV / MediaPipe', 'Webcam API', 'HTML5 Canvas'].map((t) => (
-                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/60 font-mono">
+                {['TypeScript', 'Computer Vision', 'MediaPipe', 'Webcam API', 'HTML5 Canvas'].map((t) => (
+                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/70 font-mono">
                     {t}
                   </span>
                 ))}
@@ -484,28 +501,33 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={() => sound.playHover()}
-                className="inline-flex items-center gap-2 text-xs font-mono text-white/90 hover:text-[#ff88aa] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono text-[#ff88aa] hover:text-white transition-colors"
+                aria-label="View Trace repository on GitHub"
               >
                 <GithubIcon />
                 <span>EXPLORE TRACE ON GITHUB →</span>
               </a>
             </div>
-          </motion.div>
+          </motion.article>
+        </div>
 
-          {/* 4. Automated Waste Detection & Classification (7-cols) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-7 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0e1a] to-[#040212] p-8 md:p-10 flex flex-col justify-between hover:border-white/20 transition-all duration-300"
-          >
-            <div>
-              <div className="flex items-center justify-between gap-3 mb-4">
+        {/* ══════════════════════════════════════════════════════════════════════════
+            PROJECT 4: Automated Waste Classification (CNN Deep Learning)
+            ══════════════════════════════════════════════════════════════════════════ */}
+        <motion.article
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0e1e] to-[#040212] p-8 md:p-10 mb-14 hover:border-white/20 transition-all duration-300 shadow-xl"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-7">
+              <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
                 <span className="text-xs px-3 py-1 rounded-full font-mono font-bold bg-[#ffcc66]/15 text-[#ffcc66] border border-[#ffcc66]/30 uppercase tracking-wider">
                   DEEP LEARNING · CONVOLUTIONAL NEURAL NET
                 </span>
-                <span className="text-white/40 text-xs font-mono">2025</span>
+                <span className="text-white/40 text-xs font-mono">VERIFIED REPO · 2025</span>
               </div>
 
               <h3
@@ -515,61 +537,80 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 Automated Waste <span className="text-[#ffcc66]">Classification</span>
               </h3>
 
-              <p className="text-white/70 text-base leading-relaxed font-sans mb-6">
+              <p className="text-white/80 text-base leading-relaxed font-sans mb-6">
                 A deep convolutional neural network for automated multi-stream segregation of solid waste.
-                Engineered with transfer learning to rapidly identify recyclable plastics, biodegradable organics, glass, and hazardous e-waste.
+                Engineered with transfer learning to identify recyclable plastics, biodegradable organics, glass, and hazardous e-waste.
               </p>
 
               {/* Sub-tabs */}
               <div className="flex items-center gap-2 mb-5">
                 <button
-                  onClick={() => setWasteTab('overview')}
+                  onClick={() => setWasteTab('evidence')}
                   className={`px-3 py-1 text-xs font-mono uppercase rounded transition-colors ${
-                    wasteTab === 'overview' ? 'bg-white/10 text-[#ffcc66] border border-[#ffcc66]/40' : 'text-white/40'
+                    wasteTab === 'evidence' ? 'bg-white/10 text-[#ffcc66] border border-[#ffcc66]/40' : 'text-white/50'
                   }`}
                 >
-                  Model Architecture
+                  Evidence Breakdown
                 </button>
                 <button
-                  onClick={() => setWasteTab('metrics')}
+                  onClick={() => setWasteTab('classes')}
                   className={`px-3 py-1 text-xs font-mono uppercase rounded transition-colors ${
-                    wasteTab === 'metrics' ? 'bg-white/10 text-[#ffcc66] border border-[#ffcc66]/40' : 'text-white/40'
+                    wasteTab === 'classes' ? 'bg-white/10 text-[#ffcc66] border border-[#ffcc66]/40' : 'text-white/50'
                   }`}
                 >
-                  Validation Metrics
+                  Target Classes
                 </button>
               </div>
 
-              {wasteTab === 'overview' ? (
-                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2">
-                  <div className="text-xs font-mono text-[#ffcc66] font-bold uppercase">
-                    RESNET BACKBONE &amp; DATA AUGMENTATION
+              {wasteTab === 'evidence' ? (
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] mb-6 space-y-2.5 text-xs font-sans">
+                  <div>
+                    <span className="text-[#ffcc66] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      PROBLEM
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Manual sorting of municipal waste is hazardous, labor-intensive, and prone to sorting errors that lead to recyclable contamination.
+                    </p>
                   </div>
-                  <p className="text-white/65 text-xs md:text-sm font-sans leading-relaxed">
-                    Trained with PyTorch using image rotations, affine transforms, and cross-entropy loss, achieving resilient edge inference on lower-spec hardware.
-                  </p>
+                  <div>
+                    <span className="text-[#ffcc66] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      WHAT I BUILT &amp; MY CONTRIBUTION
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Trained and evaluated a transfer learning CNN in PyTorch, applying image rotations, color jitter, affine augmentation, and cross-entropy optimization across multi-stream waste image sets.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#ffcc66] font-mono text-[11px] font-bold uppercase tracking-wider block">
+                      VERIFIABLE RESULT
+                    </span>
+                    <p className="text-white/70 leading-relaxed">
+                      Publicly available PyTorch Jupyter notebook on GitHub documenting data pipeline, model training curves, and validation loss convergence.
+                    </p>
+                  </div>
                 </div>
               ) : (
                 <div className="p-4 rounded-xl border border-white/10 bg-[#020014] mb-6 space-y-2 font-mono text-xs">
+                  <div className="text-white/40 text-[10px] uppercase mb-1">
+                    TARGET CLASSIFICATION STREAMS
+                  </div>
                   {[
-                    { label: 'Hazardous / E-Waste', score: '99.1%' },
-                    { label: 'Recyclable Plastics', score: '98.4%' },
-                    { label: 'Biodegradable Organics', score: '96.2%' },
-                    { label: 'Metal & Glass', score: '94.8%' },
-                  ].map((m) => (
-                    <div key={m.label} className="flex justify-between items-center text-white/70">
-                      <span>{m.label}</span>
-                      <span className="text-[#ffcc66] font-bold">{m.score}</span>
+                    'Hazardous / Electronic Waste',
+                    'Recyclable Plastics (PET / HDPE)',
+                    'Biodegradable Organic Waste',
+                    'Glass, Ceramics & Recyclable Metals',
+                  ].map((stream) => (
+                    <div key={stream} className="flex items-center gap-2 text-white/75">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ffcc66]" />
+                      <span>{stream}</span>
                     </div>
                   ))}
                 </div>
               )}
-            </div>
 
-            <div>
               <div className="flex flex-wrap gap-2 mb-6">
                 {['Python', 'PyTorch', 'Computer Vision', 'Jupyter', 'NumPy', 'Transfer Learning'].map((t) => (
-                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/60 font-mono">
+                  <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/70 font-mono">
                     {t}
                   </span>
                 ))}
@@ -580,88 +621,114 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={() => sound.playHover()}
-                className="inline-flex items-center gap-2 text-xs font-mono text-white/90 hover:text-[#ffcc66] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono text-[#ffcc66] hover:text-white transition-colors"
+                aria-label="View Automated Waste Classification repository on GitHub"
               >
                 <GithubIcon />
-                <span>EXPLORE CNN MODEL ON GITHUB →</span>
+                <span>EXPLORE PYTORCH MODEL ON GITHUB →</span>
               </a>
             </div>
-          </motion.div>
-        </div>
+
+            {/* Right Card: Training Architecture */}
+            <div className="lg:col-span-5 p-6 rounded-xl border border-white/10 bg-[#020014] font-mono text-xs space-y-3">
+              <div className="text-white/40 text-[10px] uppercase pb-2 border-b border-white/10 flex items-center justify-between">
+                <span>TRAINING PIPELINE</span>
+                <span className="text-[#ffcc66]">PYTORCH</span>
+              </div>
+              <div className="space-y-2 text-white/75">
+                <div className="p-2.5 rounded bg-white/[0.02] border border-white/5">
+                  <span className="text-white/40 block text-[10px]">BACKBONE:</span>
+                  <span>Convolutional Feature Extractor with Transfer Learning</span>
+                </div>
+                <div className="p-2.5 rounded bg-white/[0.02] border border-white/5">
+                  <span className="text-white/40 block text-[10px]">OPTIMIZER &amp; LOSS:</span>
+                  <span>Adam Optimizer · Cross-Entropy Multi-Class Loss</span>
+                </div>
+                <div className="p-2.5 rounded bg-white/[0.02] border border-white/5">
+                  <span className="text-white/40 block text-[10px]">DATA AUGMENTATION:</span>
+                  <span>Random Horizontal Flip, Color Jitter, Affine Warping</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.article>
 
         {/* ══════════════════════════════════════════════════════════════════════════
-            BENTO ROW 4: ProofMesh (Full-Width Systems Feature)
+            ADDITIONAL OPEN-SOURCE WORK (Nothing X & ProofMesh)
             ══════════════════════════════════════════════════════════════════════════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0d22] to-[#040212] p-8 md:p-10 flex flex-col md:flex-row items-stretch justify-between gap-8 hover:border-white/20 transition-all duration-300"
-        >
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs px-3 py-1 rounded-full font-mono font-bold bg-[#aaffcc]/15 text-[#aaffcc] border border-[#aaffcc]/30 uppercase tracking-wider">
-                CRYPTOGRAPHIC AUDIT SYSTEM
-              </span>
-              <span className="text-white/40 text-xs font-mono">2026</span>
-            </div>
-
-            <h3
-              className="text-3xl md:text-4xl text-white font-bold uppercase tracking-wide leading-tight mb-3"
-              style={{ fontFamily: '"Anton", sans-serif' }}
-            >
-              ProofMesh <span className="text-[#aaffcc]">Audit Ledger</span>
-            </h3>
-
-            <p className="text-white/70 text-base leading-relaxed font-sans mb-6 max-w-2xl">
-              A decentralized system enabling independent observers to mathematically verify the chronological history of digital events—guaranteeing that recording authorities cannot rewrite or alter past records.
-            </p>
-
-            <div className="flex flex-wrap gap-2 mb-6">
-              {['Python', 'Cryptography', 'Merkle Trees', 'Distributed Systems', 'REST API'].map((t) => (
-                <span key={t} className="text-xs px-2.5 py-0.5 rounded border border-white/10 text-white/60 font-mono">
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <a
-              href="https://github.com/roshanalexander22/ProofMesh"
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={() => sound.playHover()}
-              className="inline-flex items-center gap-2 text-xs font-mono text-white/90 hover:text-[#aaffcc] transition-colors"
-            >
-              <GithubIcon />
-              <span>EXPLORE PROOFMESH ON GITHUB →</span>
-            </a>
-          </div>
-
-          {/* Cryptographic hash chain visual */}
-          <div className="md:w-80 rounded-xl border border-white/10 bg-[#020014] p-5 font-mono text-xs flex flex-col justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Nothing X */}
+          <div className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.015] hover:border-white/20 transition-all flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between text-white/40 text-[10px] mb-3 pb-2 border-b border-white/10">
-                <span>MERKLE CHAIN PROOF</span>
-                <span className="text-[#aaffcc]">VERIFIED</span>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-white/40">
+                  WEB INTERFACE &amp; AUDIO
+                </span>
+                <span className="text-white/30 text-xs font-mono">2025</span>
               </div>
-              <div className="space-y-2 text-[11px] text-white/70">
-                <div className="p-2 rounded bg-white/[0.02] border border-white/5 truncate">
-                  <span className="text-[#aaffcc]">ROOT: </span>7f83b165...4b9d
-                </div>
-                <div className="p-2 rounded bg-white/[0.02] border border-white/5 truncate">
-                  <span className="text-white/40">HASH-1: </span>e3b0c442...9822
-                </div>
-                <div className="p-2 rounded bg-white/[0.02] border border-white/5 truncate">
-                  <span className="text-white/40">HASH-2: </span>a591a6d4...3011
-                </div>
-              </div>
+              <h4
+                className="text-2xl text-white font-bold uppercase mb-2"
+                style={{ fontFamily: '"Anton", sans-serif' }}
+              >
+                Nothing X <span className="text-white/50">Web OS</span>
+              </h4>
+              <p className="text-white/70 text-xs md:text-sm font-sans leading-relaxed mb-4">
+                Web-based reproduction of the dot-matrix design language and responsive audio feedback of Nothing earphone hardware.
+              </p>
             </div>
-            <div className="text-[10px] text-white/40 pt-3 border-t border-white/5 mt-3">
-              IMMUTABILITY: MATHEMATICALLY PROVEN
+            <div>
+              <div className="flex flex-wrap gap-1.5 mb-4 font-mono text-[11px] text-white/60">
+                <span>TypeScript</span> · <span>Tailwind CSS</span> · <span>Web Audio API</span>
+              </div>
+              <a
+                href="https://github.com/roshanalexander22/Nothing-x-app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-white/80 hover:text-white transition-colors"
+                aria-label="View Nothing X Web application on GitHub"
+              >
+                <GithubIcon />
+                <span>View Nothing X on GitHub →</span>
+              </a>
             </div>
           </div>
-        </motion.div>
+
+          {/* ProofMesh */}
+          <div className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.015] hover:border-white/20 transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-white/40">
+                  CRYPTOGRAPHIC SYSTEMS
+                </span>
+                <span className="text-white/30 text-xs font-mono">2026</span>
+              </div>
+              <h4
+                className="text-2xl text-white font-bold uppercase mb-2"
+                style={{ fontFamily: '"Anton", sans-serif' }}
+              >
+                ProofMesh <span className="text-[#aaffcc]">Audit Ledger</span>
+              </h4>
+              <p className="text-white/70 text-xs md:text-sm font-sans leading-relaxed mb-4">
+                Cryptographic audit log using Merkle tree verification to mathematically prevent authorities from altering recorded chronological history.
+              </p>
+            </div>
+            <div>
+              <div className="flex flex-wrap gap-1.5 mb-4 font-mono text-[11px] text-white/60">
+                <span>Python</span> · <span>Merkle Trees</span> · <span>Cryptography</span>
+              </div>
+              <a
+                href="https://github.com/roshanalexander22/ProofMesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-white/80 hover:text-[#aaffcc] transition-colors"
+                aria-label="View ProofMesh repository on GitHub"
+              >
+                <GithubIcon />
+                <span>View ProofMesh on GitHub →</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

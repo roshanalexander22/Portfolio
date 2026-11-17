@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Code2, ArrowUpRight, Eye, Radio } from 'lucide-react';
+import { Sparkles, Code2, ArrowUpRight, Eye, Radio, FileText, ShieldCheck, Cpu, Layers, CheckCircle2 } from 'lucide-react';
 import { sound } from '../utils/audio';
+
+// NOTE FOR USER: Paste the official hackathon results / announcement URL here once public
+const INDIC_AWARD_PROOF_URL = '';
 
 const GithubIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -151,21 +154,36 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                     rel="noopener noreferrer"
                     onMouseEnter={() => sound.playHover()}
                     className="inline-flex items-center gap-2 px-5 py-3 bg-[#CCFF00] text-black font-mono font-bold text-xs uppercase tracking-widest rounded hover:brightness-110 transition-all shadow-[0_0_20px_rgba(204,255,0,0.3)] min-h-[44px]"
-                    aria-label="Repository status: Private / Available on request"
+                    aria-label="Repository status: Private codebase, available upon request"
                   >
                     <GithubIcon />
-                    <span>REPO (PRIVATE / ON REQUEST) ↗</span>
+                    <span>REPO (PRIVATE · ON REQUEST) ↗</span>
                   </a>
 
-                  <button
-                    onClick={() => {
-                      sound.playClick();
-                      if (onNotify) onNotify('IndicClaimVerifier won 1st Place at the 2026 Hackathon!');
-                    }}
-                    className="px-5 py-3 border border-white/20 text-white/80 hover:text-white text-xs font-mono rounded hover:border-white/40 transition-colors min-h-[44px]"
-                  >
-                    1ST PLACE AWARD DETAILS
-                  </button>
+                  {INDIC_AWARD_PROOF_URL ? (
+                    <a
+                      href={INDIC_AWARD_PROOF_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onMouseEnter={() => sound.playHover()}
+                      className="inline-flex items-center gap-2 px-5 py-3 border border-[#CCFF00]/50 bg-[#CCFF00]/10 text-[#CCFF00] font-mono font-bold text-xs uppercase tracking-widest rounded hover:bg-[#CCFF00] hover:text-black transition-all min-h-[44px]"
+                    >
+                      <Sparkles size={13} />
+                      <span>AWARD PROOF LINK ↗</span>
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        if (onNotify) onNotify('IndicClaimVerifier 1st Place Award: Organizer public announcement link pending publication.');
+                      }}
+                      className="inline-flex items-center gap-2 px-4 py-3 border border-white/20 bg-white/[0.02] text-white/80 hover:text-white text-xs font-mono rounded hover:border-white/40 transition-colors min-h-[44px]"
+                      title="Organizer results link pending publication"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" />
+                      <span>AWARD PROOF: PENDING PUBLICATION</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -216,6 +234,67 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 <div className="pt-2 text-white/50 text-[10px] flex items-center justify-between border-t border-white/5">
                   <span>INFERENCE: QUANTIZED QWEN (LOCAL)</span>
                   <span className="text-white/40">[Illustrative Output]</span>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Case Study Section for Private Codebase ── */}
+            <div className="lg:col-span-12 mt-8 pt-8 border-t border-white/[0.1]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                <div className="flex items-center gap-2">
+                  <FileText size={16} className="text-[#CCFF00]" />
+                  <h4 className="text-white text-base sm:text-lg font-bold uppercase tracking-wider font-mono">
+                    TECHNICAL CASE STUDY &amp; SYSTEM ARCHITECTURE
+                  </h4>
+                </div>
+                <span className="text-white/50 text-[11px] font-mono px-2.5 py-1 rounded bg-white/[0.03] border border-white/10 w-fit">
+                  CONFIDENTIAL EVALUATION · PRIVATE REPOSITORY
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-sans">
+                {/* 1. Role */}
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] space-y-2">
+                  <div className="flex items-center gap-2 text-[#CCFF00] font-mono font-bold tracking-wider uppercase text-[11px]">
+                    <Layers size={13} />
+                    <span>1. ROLE &amp; OWNERSHIP</span>
+                  </div>
+                  <p className="text-white/80 leading-relaxed">
+                    <strong>Lead AI Architect &amp; Systems Engineer.</strong> Designed the end-to-end RAG architecture, formulated the Indic dialect tokenization strategy, configured dense vector search schemas, and orchestrated local open-weights LLM deployment.
+                  </p>
+                </div>
+
+                {/* 2. Architecture */}
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] space-y-2">
+                  <div className="flex items-center gap-2 text-[#88aaff] font-mono font-bold tracking-wider uppercase text-[11px]">
+                    <Cpu size={13} />
+                    <span>2. PIPELINE ARCHITECTURE</span>
+                  </div>
+                  <p className="text-white/80 leading-relaxed">
+                    Multilingual text ingestion → dialect-aware morphological token chunking → dual-index dense vector retrieval (FAISS for fast cosine similarity, ChromaDB for document metadata) → cross-encoder reranking → local quantized Qwen 2.5 context synthesis.
+                  </p>
+                </div>
+
+                {/* 3. Key Decisions */}
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] space-y-2">
+                  <div className="flex items-center gap-2 text-[#aaffcc] font-mono font-bold tracking-wider uppercase text-[11px]">
+                    <ShieldCheck size={13} />
+                    <span>3. KEY DECISIONS</span>
+                  </div>
+                  <p className="text-white/80 leading-relaxed">
+                    <strong>Local-First &amp; Zero Cloud API Cost:</strong> Ran fully offline through Ollama so citizen query data never leaves the host device, eliminating commercial token fees. Custom chunking preserved agglutinative Indic root affixes without fragmenting semantic context.
+                  </p>
+                </div>
+
+                {/* 4. Publicly Shareable */}
+                <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] space-y-2">
+                  <div className="flex items-center gap-2 text-[#ffcc66] font-mono font-bold tracking-wider uppercase text-[11px]">
+                    <CheckCircle2 size={13} />
+                    <span>4. WHAT CAN BE SHARED</span>
+                  </div>
+                  <p className="text-white/80 leading-relaxed">
+                    System component schematics, prompt orchestration templates, vector indexing parameters, and contextual precision evaluation rubrics. <em>(Core repository source code and competition benchmark corpora remain private.)</em>
+                  </p>
                 </div>
               </div>
             </div>
@@ -277,10 +356,10 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
 
                 <div className="p-3.5 rounded-xl border border-white/10 bg-white/[0.02]">
                   <span className="text-[#88aaff] font-mono text-[11px] font-bold uppercase tracking-wider block mb-0.5">
-                    VERIFIABLE RESULT
+                    VERIFIABLE RESULT &amp; TEST SUITE
                   </span>
                   <p className="text-white/75 leading-relaxed">
-                    Open-source repository on GitHub with unit-tested geometry logic and active mobile application code.
+                    Open-source repository on GitHub with unit-tested geometry logic (Dart unit tests in <code className="text-white/90">test/</code> validating ray-casting point-in-polygon intersection across irregular coordinate bounds and squad ownership state sync).
                   </p>
                 </div>
               </div>
@@ -315,10 +394,10 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 rel="noopener noreferrer"
                 onMouseEnter={() => sound.playHover()}
                 className="inline-flex items-center gap-2 text-xs font-mono text-[#88aaff] hover:text-white transition-colors min-h-[44px]"
-                aria-label="View GeoSeize repository on GitHub"
+                aria-label="View GeoSeize repository on GitHub (github.com/roshanalexander22/GeoSeize)"
               >
                 <GithubIcon />
-                <span>EXPLORE GEOSEIZE ON GITHUB →</span>
+                <span>EXPLORE REPOSITORY (github.com/roshanalexander22/GeoSeize) →</span>
               </a>
             </div>
           </motion.article>
@@ -372,10 +451,10 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
 
                 <div className="p-3.5 rounded-xl border border-white/10 bg-white/[0.02]">
                   <span className="text-[#ff88aa] font-mono text-[11px] font-bold uppercase tracking-wider block mb-0.5">
-                    VERIFIABLE RESULT
+                    VERIFIABLE RESULT &amp; CLIENT PRIVACY
                   </span>
                   <p className="text-white/75 leading-relaxed">
-                    Published open-source repository running in modern web browsers with responsive real-time landmark classification.
+                    Open-source repository running in modern web browsers. MediaPipe model executes entirely on-device via WebAssembly/WebGL, processing camera frames locally without network transmission.
                   </p>
                 </div>
               </div>
@@ -407,10 +486,10 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 rel="noopener noreferrer"
                 onMouseEnter={() => sound.playHover()}
                 className="inline-flex items-center gap-2 text-xs font-mono text-[#ff88aa] hover:text-white transition-colors min-h-[44px]"
-                aria-label="View Trace repository on GitHub"
+                aria-label="View Trace repository on GitHub (github.com/roshanalexander22/Trace)"
               >
                 <GithubIcon />
-                <span>EXPLORE TRACE ON GITHUB →</span>
+                <span>EXPLORE REPOSITORY (github.com/roshanalexander22/Trace) →</span>
               </a>
             </div>
           </motion.article>
@@ -468,10 +547,10 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
 
                 <div className="p-3.5 rounded-xl border border-white/10 bg-white/[0.02]">
                   <span className="text-[#ffcc66] font-mono text-[11px] font-bold uppercase tracking-wider block mb-0.5">
-                    VERIFIABLE RESULT
+                    VERIFIABLE RESULT &amp; PIPELINE NOTEBOOKS
                   </span>
                   <p className="text-white/75 leading-relaxed">
-                    Open-source PyTorch training and evaluation notebooks hosted on GitHub documenting data pipeline, loss convergence, and validation curves.
+                    Open-source PyTorch training and evaluation notebooks hosted on GitHub documenting data pipeline, loss convergence, and validation curves across multi-stream waste categories.
                   </p>
                 </div>
               </div>
@@ -490,10 +569,10 @@ export default function ProjectsSection({ onNotify }: ProjectsSectionProps) {
                 rel="noopener noreferrer"
                 onMouseEnter={() => sound.playHover()}
                 className="inline-flex items-center gap-2 text-xs font-mono text-[#ffcc66] hover:text-white transition-colors min-h-[44px]"
-                aria-label="View Automated Waste Classification repository on GitHub"
+                aria-label="View Automated Waste Classification repository on GitHub (github.com/roshanalexander22/Automated-Waste-Classification)"
               >
                 <GithubIcon />
-                <span>EXPLORE PYTORCH MODEL ON GITHUB →</span>
+                <span>EXPLORE REPOSITORY (github.com/roshanalexander22/Automated-Waste-Classification) →</span>
               </a>
             </div>
 

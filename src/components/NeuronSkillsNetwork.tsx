@@ -795,11 +795,12 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
           ctx.fillStyle = isSelected ? '#CCFF00' : isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.7)';
           ctx.fillText(node.name, node.x, node.y + radius + 5);
 
-          // Proficiency badge on hub or selected
+          // Applied project or tier context badge on hover or select
           if (isSelected || isHovered) {
             ctx.font = '8px "IBM Plex Mono", monospace';
             ctx.fillStyle = '#CCFF00';
-            ctx.fillText(`${node.level}% SYNAPSE`, node.x, node.y + radius + 17);
+            const badgeLabel = node.projects.length > 0 ? `DEMO: ${node.projects[0]}` : getTierLabel(node.tier).toUpperCase();
+            ctx.fillText(badgeLabel, node.x, node.y + radius + 17);
           }
         }
       });
@@ -1015,7 +1016,7 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
             </div>
 
             <div className="absolute top-4 right-6 z-20 text-white/30 text-[10px] font-mono pointer-events-none hidden sm:block">
-              CLICK A NEURON TO INSPECT TELEMETRY
+              CLICK A NODE TO VIEW DEMONSTRATED PROJECT EVIDENCE
             </div>
 
             {/* Canvas */}
@@ -1025,7 +1026,7 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
               style={{ minHeight: '620px' }}
             />
 
-            {/* Selected Neuron Telemetry Panel (Bottom Floating HUD) */}
+            {/* Selected Skill Detail Panel (Bottom Floating HUD) */}
             <AnimatePresence>
               {selectedNode && (
                 <motion.div
@@ -1078,18 +1079,18 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                   {/* Competency Level Badge */}
                   <div className="mb-4 p-3 rounded-lg border border-white/10 bg-white/[0.03]">
                     <div className="flex justify-between items-center text-[10px] font-mono text-white/50 mb-1">
-                      <span>COMPETENCY LEVEL</span>
+                      <span>SKILL TIER &amp; PROJECT EVIDENCE</span>
                       <span className="text-[#CCFF00] font-bold uppercase tracking-wider">
                         {getTierLabel(selectedNode.tier)}
                       </span>
                     </div>
                     <div className="text-xs text-white/75 font-mono leading-relaxed">
                       {selectedNode.tier === 'core' &&
-                        'Primary architectural pillar integrated across flagship systems.'}
+                        'Core architectural focus demonstrated directly across flagship project codebases.'}
                       {selectedNode.tier === 'hub' &&
-                        'Key domain capability with extensive hands-on system building and research.'}
+                        'Key technical competency with hands-on systems development and coursework.'}
                       {selectedNode.tier === 'leaf' &&
-                        'Production-ready framework actively applied in software and AI projects.'}
+                        'Applied framework, language, or tool actively integrated in project implementations.'}
                     </div>
                   </div>
 

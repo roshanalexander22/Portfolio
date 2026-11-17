@@ -93,31 +93,31 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
-    role: 'Student Intern – AI/ML',
-    org: 'Bleep Education × IIT Bombay',
-    period: 'Ongoing',
-    desc: 'Applying AI and ML concepts through hands-on, industry-oriented training.',
+    role: 'AI / ML Student Trainee',
+    org: 'Bleep Education (IIT Bombay Outreach Partner)',
+    period: 'Active Training',
+    desc: 'Participating in intensive applied machine learning training covering PyTorch models, data preprocessing, and evaluation metrics.',
     dot: '#CCFF00',
   },
   {
     role: 'Technical Lead – μLearn GECI',
-    org: 'μLearn Foundation',
+    org: 'μLearn Foundation (GEC Idukki Chapter)',
     period: '2024 – Present',
-    desc: 'Lead student projects, mentor developers, build internal tools and automate workflows with GitHub Actions.',
+    desc: 'Architected μFIFA 2026 gamified platform, lead student technical cohorts, and automate workflows with GitHub Actions.',
     dot: '#88aaff',
   },
   {
-    role: 'NRPF Lead',
+    role: 'NRPF Student Coordinator',
     org: 'NSS, GEC Idukki',
-    period: 'June 2026 – Present',
-    desc: 'Coordinate disaster-preparedness and emergency-response initiatives at the campus level.',
+    period: 'Active Role',
+    desc: 'Coordinating disaster-preparedness drills, safety awareness workshops, and community civic initiatives.',
     dot: '#ff88aa',
   },
   {
-    role: 'Active Member',
-    org: 'Stellario · IEEE · Sports Club',
-    period: 'Ongoing',
-    desc: 'Active technical and cultural contributor across multiple campus clubs.',
+    role: 'Technical & Hackathon Contributor',
+    org: 'Stellario · IEEE · GECI Societies',
+    period: 'Active Member',
+    desc: 'Active technical and hackathon contributor across campus societies and coding events.',
     dot: '#aaffcc',
   },
 ];
@@ -617,10 +617,10 @@ export default function InfoDrawer({ isOpen, onClose, initialSection = 'menu', o
                     <SectionLabel>HONORS & ACHIEVEMENTS</SectionLabel>
                     <div className="space-y-2.5">
                       {[
-                        { icon: '🏆', text: 'Winner – IndicClaimVerifier 2026 Hackathon' },
-                        { icon: '🎓', text: '100% in SSLC · 98.5% in Plus Two' },
-                        { icon: '⭐', text: 'CGPA 8.5+ at GEC Idukki with clear record' },
-                        { icon: '🚀', text: 'Participant – Mument, Codethon, IndicClaimVerifier hackathons' },
+                        { icon: '🏆', text: '1st Place Winner – IndicClaimVerifier 2026 Hackathon' },
+                        { icon: '🎓', text: 'Dual Academic Track: B.Tech CSE (GEC Idukki) & B.Sc. Data Science & AI (IIT Guwahati)' },
+                        { icon: '⭐', text: 'CGPA 8.5+ Cumulative Academic Standing at GEC Idukki' },
+                        { icon: '🚀', text: 'Technical Lead @ μLearn GECI & Open Source Contributor' },
                       ].map((a) => (
                         <div
                           key={a.text}

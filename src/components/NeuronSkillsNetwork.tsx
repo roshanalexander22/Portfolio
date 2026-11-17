@@ -891,17 +891,16 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
           <div>
             <div className="flex items-center gap-2 mb-2 font-mono text-[11px] text-[#CCFF00] tracking-[0.3em] uppercase">
               <Brain size={14} className="text-[#CCFF00]" />
-              <span>COGNITIVE ARCHITECTURE &amp; SYNAPSES</span>
+              <span>DEMONSTRATED COMPETENCIES &amp; EVIDENCE</span>
             </div>
             <h2
               className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
               style={{ fontFamily: '"Anton", sans-serif', lineHeight: 1.1 }}
             >
-              NEURON SKILLS <span className="text-[#CCFF00]">NETWORK</span>
+              SKILLS <span className="text-[#CCFF00]">NETWORK</span>
             </h2>
-            <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
-              An interactive biological neural model representing competencies as interconnected cognitive lobes.
-              Hover over neurons to trace synaptic pathways or click any node for architectural telemetry.
+            <p className="text-white/75 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
+              Technical competencies across AI/ML, cross-platform mobile engineering, and systems software, mapped directly to evidence in completed repositories. Select any skill to view its project integration.
             </p>
           </div>
 
@@ -909,7 +908,7 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
           <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={pulseElectricalWave}
-              className="flex items-center gap-2 px-4 py-2 border border-[#CCFF00]/40 text-[#CCFF00] text-xs font-mono tracking-wider uppercase rounded-sm hover:bg-[#CCFF00]/10 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 border border-[#CCFF00]/40 text-[#CCFF00] text-xs font-mono tracking-wider uppercase rounded-sm hover:bg-[#CCFF00]/10 transition-colors min-h-[38px]"
             >
               <Zap size={13} className="text-[#CCFF00] animate-pulse" />
               <span>FIRE SYNAPSES</span>
@@ -922,10 +921,10 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                   sound.playClick();
                   setViewMode('network');
                 }}
-                className={`px-3 py-1.5 text-xs font-mono rounded-sm transition-all ${
+                className={`px-3 py-1.5 text-xs font-mono rounded-sm transition-all min-h-[36px] ${
                   viewMode === 'network'
                     ? 'bg-[#CCFF00] text-black font-semibold'
-                    : 'text-white/40 hover:text-white'
+                    : 'text-white/60 hover:text-white'
                 }`}
               >
                 SYNAPSE CANVAS
@@ -935,10 +934,10 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                   sound.playClick();
                   setViewMode('grid');
                 }}
-                className={`px-3 py-1.5 text-xs font-mono rounded-sm transition-all ${
+                className={`px-3 py-1.5 text-xs font-mono rounded-sm transition-all min-h-[36px] ${
                   viewMode === 'grid'
                     ? 'bg-[#CCFF00] text-black font-semibold'
-                    : 'text-white/40 hover:text-white'
+                    : 'text-white/60 hover:text-white'
                 }`}
               >
                 CLUSTER MATRIX
@@ -949,21 +948,21 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
 
         {/* Category Filter Pills */}
         <div className="flex items-center gap-2 mt-6 overflow-x-auto no-scrollbar pb-2">
-          <span className="text-[10px] text-white/30 font-mono tracking-widest uppercase flex-shrink-0 mr-2">
-            LOBE FILTER:
+          <span className="text-[10px] text-white/50 font-mono tracking-widest uppercase flex-shrink-0 mr-2">
+            FILTER DOMAIN:
           </span>
           <button
             onClick={() => {
               sound.playClick();
               setActiveFilter('all');
             }}
-            className={`px-3 py-1 text-xs font-mono rounded-full border transition-all select-none whitespace-nowrap ${
+            className={`px-3.5 py-1.5 text-xs font-mono rounded-full border transition-all select-none whitespace-nowrap min-h-[38px] flex items-center ${
               activeFilter === 'all'
                 ? 'bg-[#CCFF00] text-black border-[#CCFF00] font-bold'
-                : 'border-white/10 text-white/50 hover:border-white/30'
+                : 'border-white/10 text-white/60 hover:border-white/30'
             }`}
           >
-            ALL LOBES (35 NODES)
+            ALL DOMAINS (35 NODES)
           </button>
           {Object.entries(CATEGORY_META).map(([key, meta]) => {
             const isActive = activeFilter === key;
@@ -974,11 +973,11 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                   sound.playClick();
                   setActiveFilter(isActive ? 'all' : key);
                 }}
-                className={`px-3 py-1 text-xs font-mono rounded-full border transition-all select-none whitespace-nowrap flex items-center gap-1.5`}
+                className={`px-3.5 py-1.5 text-xs font-mono rounded-full border transition-all select-none whitespace-nowrap flex items-center gap-1.5 min-h-[38px]`}
                 style={{
                   borderColor: isActive ? meta.color : 'rgba(255,255,255,0.1)',
                   background: isActive ? `${meta.color}25` : 'transparent',
-                  color: isActive ? meta.color : 'rgba(255,255,255,0.6)',
+                  color: isActive ? meta.color : 'rgba(255,255,255,0.7)',
                 }}
               >
                 <span
@@ -1184,9 +1183,21 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                             {getTierLabel(node.tier)}
                           </span>
                         </div>
-                        <p className="text-[11px] text-white/50 mt-1 leading-snug font-sans line-clamp-1">
+                        <p className="text-[11px] text-white/60 mt-1 leading-snug font-sans line-clamp-1">
                           {node.description}
                         </p>
+                        {node.projects.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {node.projects.slice(0, 2).map((p) => (
+                              <span
+                                key={p}
+                                className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/[0.04] text-white/70 border border-white/5"
+                              >
+                                {p}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>

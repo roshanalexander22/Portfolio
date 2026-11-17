@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Languages } from 'lucide-react';
+import { GraduationCap, Award, Languages, ExternalLink } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 const DUAL_DEGREE_TRACK = [
@@ -24,7 +24,7 @@ const DUAL_DEGREE_TRACK = [
     status: 'In Progress',
     accent: '#88aaff',
     description:
-      'Advanced theoretical and applied curriculum covering statistical learning, linear algebra for ML, deep neural network architectures, high-dimensional probability, and natural language processing directly from IIT Guwahati faculty.',
+      'Theoretical and applied curriculum covering statistical learning, linear algebra for ML, deep neural network architectures, high-dimensional probability, and natural language processing directly from IIT Guwahati faculty.',
     highlights: [
       'Data Science & AI Specialization',
       'IIT Guwahati Curriculum',
@@ -33,41 +33,50 @@ const DUAL_DEGREE_TRACK = [
   },
 ];
 
-const VERIFIED_CERTIFICATIONS = [
+interface CourseworkCertification {
+  title: string;
+  issuer: string;
+  category: string;
+  accent: string;
+  description: string;
+  credentialUrl?: string;
+}
+
+const CERTIFICATIONS_COURSEWORK: CourseworkCertification[] = [
   {
     title: 'Microsoft Learn – AI Fundamentals',
     issuer: 'Microsoft',
-    credentialId: 'Verified Achievement',
+    category: 'Course Completion',
     accent: '#88aaff',
-    description: 'Core concepts in artificial intelligence, machine learning workloads, computer vision, and responsible AI practices.',
+    description: 'Foundational concepts in artificial intelligence, machine learning workloads, computer vision, and responsible AI practices.',
   },
   {
     title: 'Introduction to Model Context Protocol (MCP)',
     issuer: 'Anthropic / MCP Ecosystem',
-    credentialId: 'Verified Completion',
+    category: 'Course Completion',
     accent: '#CCFF00',
     description: 'Architecture of client-host-server protocol for contextual tool execution, resource indexing, and agent orchestration.',
   },
   {
     title: 'Gemini Certification for Students (K12)',
     issuer: 'Google',
-    credentialId: 'Google Certified',
+    category: 'Student Coursework',
     accent: '#aaffcc',
     description: 'Multimodal generative AI techniques, structured prompting, and generative model deployment paradigms.',
   },
   {
     title: 'Python & Data Science Foundations',
-    issuer: 'Industry Verified',
-    credentialId: 'Technical Competency',
+    issuer: 'Industry Coursework',
+    category: 'Applied Coursework',
     accent: '#ffcc66',
-    description: 'Vectorized computing with NumPy, Pandas data pipelines, Scikit-Learn modeling, and statistical exploratory analysis.',
+    description: 'Vectorized computing with NumPy, Pandas data processing, Scikit-Learn modeling, and exploratory data analysis.',
   },
   {
     title: 'Git & GitHub Enterprise Automation',
     issuer: 'GitHub / μLearn',
-    credentialId: 'DevOps & CI/CD',
+    category: 'Applied DevOps Training',
     accent: '#d8b4fe',
-    description: 'Automated CI/CD pipelines, branch management, pull request review workflows, and GitHub Actions orchestration.',
+    description: 'Branch management, pull request review workflows, and automated continuous integration with GitHub Actions.',
   },
 ];
 
@@ -97,7 +106,7 @@ export default function EducationSection() {
         <div className="pb-8 border-b border-white/[0.08] mb-12">
           <div className="flex items-center gap-2 mb-2 font-mono text-[11px] text-[#CCFF00] tracking-[0.3em] uppercase">
             <GraduationCap size={14} className="text-[#CCFF00]" />
-            <span>ACADEMIC FOUNDATION &amp; VERIFIED CREDENTIALS</span>
+            <span>ACADEMIC FOUNDATION &amp; COURSEWORK</span>
           </div>
           <h2
             className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
@@ -106,7 +115,7 @@ export default function EducationSection() {
             EDUCATION &amp; <span className="text-[#CCFF00]">CREDENTIALS</span>
           </h2>
           <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
-            Consistently pursuing a dual academic track bridging computer systems engineering with rigorous data science and machine learning.
+            Consistently pursuing a dual academic track bridging computer science and systems engineering with rigorous data science and machine learning.
           </p>
         </div>
 
@@ -142,7 +151,7 @@ export default function EducationSection() {
                   >
                     {deg.status}
                   </span>
-                  <span className="text-white/40 text-xs font-mono">{deg.period}</span>
+                  <span className="text-white/50 text-xs font-mono">{deg.period}</span>
                 </div>
 
                 <h3
@@ -157,7 +166,7 @@ export default function EducationSection() {
                   <span>{deg.institution}</span>
                 </div>
 
-                <p className="text-white/70 text-sm md:text-base leading-relaxed font-sans mb-6">
+                <p className="text-white/80 text-sm md:text-base leading-relaxed font-sans mb-6">
                   {deg.description}
                 </p>
               </div>
@@ -167,7 +176,7 @@ export default function EducationSection() {
                   {deg.highlights.map((item) => (
                     <span
                       key={item}
-                      className="text-xs px-2.5 py-1 rounded-md border border-white/10 text-white/75 bg-white/[0.02] font-mono"
+                      className="text-xs px-2.5 py-1 rounded-md border border-white/10 text-white/80 bg-white/[0.02] font-mono"
                     >
                       {item}
                     </span>
@@ -178,38 +187,54 @@ export default function EducationSection() {
           ))}
         </div>
 
-        {/* Lower Row: Industry Certifications + Languages Spoken */}
+        {/* Lower Row: Technical Certifications / Coursework + Languages */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left: Verified Certifications */}
+          {/* Left: Certifications / Coursework */}
           <div className="lg:col-span-8 p-8 md:p-10 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0e1e] to-[#040212]">
-            <div className="flex items-center gap-2 mb-6">
-              <Award size={18} className="text-[#CCFF00]" />
-              <h3
-                className="text-xl sm:text-2xl text-white uppercase font-bold tracking-wide"
-                style={{ fontFamily: '"Anton", sans-serif' }}
-              >
-                VERIFIED INDUSTRY CERTIFICATIONS
-              </h3>
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/[0.08] flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <Award size={18} className="text-[#CCFF00]" />
+                <h3
+                  className="text-xl sm:text-2xl text-white uppercase font-bold tracking-wide"
+                  style={{ fontFamily: '"Anton", sans-serif' }}
+                >
+                  COURSES &amp; TECHNICAL CERTIFICATIONS
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-white/40">
+                Independent coursework &amp; skill paths
+              </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {VERIFIED_CERTIFICATIONS.map((cert) => (
+              {CERTIFICATIONS_COURSEWORK.map((cert) => (
                 <div
                   key={cert.title}
                   className="p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-white/20 transition-all flex flex-col justify-between space-y-2"
                 >
                   <div>
-                    <div className="flex items-center justify-between text-xs font-mono text-white/40 mb-1">
+                    <div className="flex items-center justify-between text-xs font-mono text-white/50 mb-1">
                       <span>{cert.issuer}</span>
-                      <span className="text-[#CCFF00] font-medium">{cert.credentialId}</span>
+                      <span className="text-[#CCFF00] font-medium">{cert.category}</span>
                     </div>
                     <div className="text-white text-sm font-semibold leading-snug">
                       {cert.title}
                     </div>
                   </div>
-                  <p className="text-white/60 text-xs font-sans leading-relaxed">
+                  <p className="text-white/70 text-xs font-sans leading-relaxed">
                     {cert.description}
                   </p>
+                  {cert.credentialUrl && (
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-mono text-[#88aaff] hover:underline pt-1"
+                    >
+                      <span>Verify Credential</span>
+                      <ExternalLink size={10} />
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
@@ -218,7 +243,7 @@ export default function EducationSection() {
           {/* Right: Languages & Communication */}
           <div className="lg:col-span-4 p-8 md:p-10 rounded-2xl border border-white/[0.09] bg-gradient-to-br from-[#0c0c1c] to-[#040212] flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-2 mb-6">
+              <div className="flex items-center gap-2 mb-6 pb-3 border-b border-white/[0.08]">
                 <Languages size={18} className="text-[#88aaff]" />
                 <h3
                   className="text-xl sm:text-2xl text-white uppercase font-bold tracking-wide"
@@ -242,7 +267,7 @@ export default function EducationSection() {
                         <div className="text-white text-xs font-bold font-mono">
                           {lang.language}
                         </div>
-                        <div className="text-white/50 text-[11px] font-sans">
+                        <div className="text-white/60 text-[11px] font-sans">
                           {lang.proficiency}
                         </div>
                       </div>
@@ -254,8 +279,8 @@ export default function EducationSection() {
             </div>
 
             <div className="pt-6 border-t border-white/[0.08] mt-6">
-              <div className="text-white/50 text-xs font-mono leading-relaxed">
-                Comfortable communicating with distributed, multilingual engineering teams worldwide.
+              <div className="text-white/60 text-xs font-mono leading-relaxed">
+                Comfortable collaborating with distributed, multilingual software teams.
               </div>
             </div>
           </div>

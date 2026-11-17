@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ExternalLink, Mail, Phone, Copy, Check } from 'lucide-react';
 import { sound } from '../utils/audio';
@@ -151,12 +151,13 @@ export default function InfoDrawer({ isOpen, onClose, initialSection = 'menu', o
   const [sent, setSent] = useState(false);
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
-  useEffect(() => {
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       setSection(initialSection);
-      sound.playClick();
     }
-  }, [isOpen, initialSection]);
+  }
 
   const copyText = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -385,7 +386,7 @@ export default function InfoDrawer({ isOpen, onClose, initialSection = 'menu', o
                     >
                       <div>roshanalexander72@gmail.com</div>
                       <div>+91 9656271863 · @roshhnnnnn_</div>
-                      <div>Kottarakkara, Kollam, Kerala – 691532</div>
+                      <div>Kerala, India · IST (UTC+05:30)</div>
                     </div>
                   </motion.div>
                 )}

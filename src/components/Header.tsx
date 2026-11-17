@@ -160,7 +160,7 @@ export default function Header({ onOpenDrawer, onOpenTerminal, onNotify }: Heade
         </nav>
 
         {/* Right controls: Terminal + Audio Toggle + Drawer Menu + Contact CTA */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           {/* Terminal / Cmd button */}
           <button
             onClick={() => {
@@ -169,24 +169,26 @@ export default function Header({ onOpenDrawer, onOpenTerminal, onNotify }: Heade
             }}
             onMouseEnter={() => sound.playHover()}
             title="Open Cyber Terminal (⌘K / Ctrl+K)"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 border border-white/10 text-white/40 hover:text-[#CCFF00] hover:border-[#CCFF00]/40 text-[10px] font-mono rounded transition-colors"
+            aria-label="Open Cyber Terminal"
+            className="flex items-center gap-1.5 px-3 py-2 border border-white/20 text-white/75 hover:text-[#CCFF00] hover:border-[#CCFF00]/50 text-[11px] font-mono rounded transition-colors min-h-[38px]"
           >
-            <Terminal size={12} />
+            <Terminal size={13} />
             <span className="hidden sm:inline">CMD</span>
-            <kbd className="hidden sm:inline text-[9px] px-1 bg-white/5 rounded border border-white/10 text-white/40">⌘K</kbd>
+            <kbd className="hidden sm:inline text-[9px] px-1 bg-white/5 rounded border border-white/10 text-white/60">⌘K</kbd>
           </button>
 
           {/* Sound FX Toggle */}
           <button
             onClick={toggleSound}
             title={soundActive ? 'Mute audio feedback' : 'Enable audio feedback'}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 border text-[10px] font-mono rounded transition-all duration-200 ${
+            aria-label={soundActive ? 'Mute audio feedback' : 'Enable audio feedback'}
+            className={`flex items-center gap-1.5 px-3 py-2 border text-[11px] font-mono rounded transition-all duration-200 min-h-[38px] ${
               soundActive
                 ? 'border-[#CCFF00]/60 text-[#CCFF00] bg-[#CCFF00]/10'
-                : 'border-white/10 text-white/40 hover:text-white hover:border-white/20'
+                : 'border-white/20 text-white/75 hover:text-white hover:border-white/40'
             }`}
           >
-            {soundActive ? <Volume2 size={12} /> : <VolumeX size={12} />}
+            {soundActive ? <Volume2 size={13} /> : <VolumeX size={13} />}
             <span className="hidden sm:inline">{soundActive ? 'FX ON' : 'FX OFF'}</span>
           </button>
 
@@ -198,9 +200,10 @@ export default function Header({ onOpenDrawer, onOpenTerminal, onNotify }: Heade
             }}
             onMouseEnter={() => sound.playHover()}
             title="Open System Drawer Navigation"
-            className="flex items-center gap-1 px-2.5 py-1.5 border border-white/15 text-white/70 hover:text-white hover:border-[#CCFF00]/50 text-[10px] font-mono rounded transition-colors"
+            aria-label="Open System Drawer Navigation"
+            className="flex items-center gap-1.5 px-3 py-2 border border-white/20 text-white/80 hover:text-white hover:border-[#CCFF00]/50 text-[11px] font-mono rounded transition-colors min-h-[38px]"
           >
-            <Menu size={12} />
+            <Menu size={13} />
             <span className="hidden md:inline">DRAWER</span>
           </button>
 
@@ -209,10 +212,10 @@ export default function Header({ onOpenDrawer, onOpenTerminal, onNotify }: Heade
             href="#contact"
             onClick={(e) => scrollToSection(e, '#contact')}
             onMouseEnter={() => sound.playHover()}
-            className="group relative overflow-hidden flex items-center gap-1.5 px-3.5 py-1.5 bg-[#CCFF00] text-black text-[11px] tracking-[0.2em] uppercase font-mono font-bold rounded-sm hover:brightness-110 transition-all shadow-[0_0_15px_rgba(204,255,0,0.25)]"
+            className="group relative overflow-hidden flex items-center gap-1.5 px-4 py-2 bg-[#CCFF00] text-black text-[11px] tracking-[0.2em] uppercase font-mono font-bold rounded-sm hover:brightness-110 transition-all shadow-[0_0_15px_rgba(204,255,0,0.25)] min-h-[38px]"
           >
             <span>CONNECT</span>
-            <ArrowUpRight size={12} />
+            <ArrowUpRight size={13} />
           </a>
         </div>
       </motion.header>

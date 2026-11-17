@@ -214,10 +214,10 @@ export default function ContactSection({ onNotify }: ContactSectionProps) {
             <div className="p-4 rounded-xl border border-white/5 bg-white/[0.015] font-mono text-xs text-white/40 space-y-1">
               <div className="flex items-center gap-1.5 text-[#CCFF00] text-[10px] font-bold">
                 <MapPin size={11} />
-                <span>LOCATION TELEMETRY</span>
+                <span>LOCATION &amp; TIMEZONE</span>
               </div>
-              <div>Kottarakkara, Kollam, Kerala – 691532</div>
-              <div>Coordinates: 9.52° N, 76.78° E · IST (UTC+05:30)</div>
+              <div>Kerala, India</div>
+              <div>Indian Standard Time · IST (UTC+05:30)</div>
             </div>
           </div>
 

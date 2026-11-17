@@ -93,18 +93,18 @@ export default function AchievementsSection() {
             <span>HONORS, AWARDS &amp; ACCREDITATIONS</span>
           </div>
           <h2
-            className="text-4xl md:text-6xl text-white uppercase leading-none font-bold tracking-tight"
-            style={{ fontFamily: '"Anton", sans-serif' }}
+            className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
+            style={{ fontFamily: '"Anton", sans-serif', lineHeight: 1.1 }}
           >
             ACHIEVEMENTS &amp; <span className="text-[#CCFF00]">HONORS</span>
           </h2>
-          <p className="text-white/50 text-sm mt-3 max-w-2xl font-sans leading-relaxed">
+          <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
             Proven track record of excellence in national hackathons, academic merit, university leadership, and industry certifications.
           </p>
         </div>
 
         {/* Milestone Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {ACHIEVEMENTS.map((item, index) => (
             <motion.div
               key={item.title}
@@ -113,7 +113,7 @@ export default function AchievementsSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
               onMouseEnter={() => sound.playHover()}
-              className="group relative p-6 rounded-xl border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between"
+              className="group relative p-7 md:p-8 rounded-xl border border-white/[0.08] hover:border-white/25 transition-all duration-300 flex flex-col justify-between"
               style={{
                 background: 'rgba(255, 255, 255, 0.02)',
               }}
@@ -127,7 +127,7 @@ export default function AchievementsSection() {
               />
 
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
+                <div className="flex items-center justify-between gap-2 mb-4">
                   <span
                     className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold tracking-wider uppercase"
                     style={{
@@ -138,34 +138,34 @@ export default function AchievementsSection() {
                   >
                     {item.category}
                   </span>
-                  <span className="text-white/30 text-[11px] font-mono">
+                  <span className="text-white/40 text-xs font-mono">
                     {item.year}
                   </span>
                 </div>
 
-                <div className="flex items-start gap-3 mb-2">
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                <div className="flex items-start gap-3.5 mb-3">
+                  <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>
                   <div>
                     <h3
-                      className="text-white text-xl font-bold uppercase leading-tight group-hover:text-[#CCFF00] transition-colors"
+                      className="text-white text-xl font-bold uppercase leading-snug group-hover:text-[#CCFF00] transition-colors"
                       style={{ fontFamily: '"Anton", sans-serif' }}
                     >
                       {item.title}
                     </h3>
-                    <p className="text-white/40 text-xs font-mono mt-0.5">
+                    <p className="text-white/50 text-xs font-mono mt-1">
                       {item.subtitle}
                     </p>
                   </div>
                 </div>
 
-                <p className="text-white/60 text-xs leading-relaxed font-sans mt-3 mb-4">
+                <p className="text-white/75 text-sm leading-relaxed font-sans mt-3 mb-6" style={{ lineHeight: 1.75 }}>
                   {item.description}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                 <span
-                  className="text-[10px] font-mono font-semibold"
+                  className="text-xs font-mono font-semibold"
                   style={{ color: item.accent }}
                 >
                   {item.metrics}

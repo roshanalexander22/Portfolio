@@ -876,12 +876,12 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
               <span>COGNITIVE ARCHITECTURE &amp; SYNAPSES</span>
             </div>
             <h2
-              className="text-4xl md:text-6xl text-white uppercase leading-none font-bold tracking-tight"
-              style={{ fontFamily: '"Anton", sans-serif' }}
+              className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
+              style={{ fontFamily: '"Anton", sans-serif', lineHeight: 1.1 }}
             >
               NEURON SKILLS <span className="text-[#CCFF00]">NETWORK</span>
             </h2>
-            <p className="text-white/50 text-sm mt-3 max-w-2xl font-sans leading-relaxed">
+            <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
               An interactive biological neural model representing competencies as interconnected cognitive lobes.
               Hover over neurons to trace synaptic pathways or click any node for architectural telemetry.
             </p>
@@ -1048,13 +1048,13 @@ export default function NeuronSkillsNetwork({ onNotify }: NeuronSkillsNetworkPro
                   </div>
 
                   <h3
-                    className="text-white text-xl font-bold tracking-wide leading-tight mb-2"
+                    className="text-white text-2xl font-bold tracking-wide leading-tight mb-2.5"
                     style={{ fontFamily: '"Anton", sans-serif' }}
                   >
                     {selectedNode.name}
                   </h3>
 
-                  <p className="text-white/70 text-xs leading-relaxed mb-4 font-sans">
+                  <p className="text-white/80 text-sm leading-relaxed mb-5 font-sans" style={{ lineHeight: 1.75 }}>
                     {selectedNode.description}
                   </p>
 

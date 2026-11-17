@@ -53,7 +53,7 @@ export default function GitHubActivitySection() {
                 </span>
               </div>
 
-              <p className="text-white/60 text-sm font-sans leading-relaxed mb-8">
+              <p className="text-white/75 text-base leading-relaxed font-sans mb-8" style={{ lineHeight: 1.8 }}>
                 Building in the open with public code repositories covering Retrieval-Augmented Generation, cross-platform Flutter applications, local LLM inference engines, and computer vision utilities.
               </p>
 

@@ -158,11 +158,11 @@ export default function App() {
                 initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-2 mb-6 w-fit px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm"
+                className="inline-flex items-center gap-2 mb-8 w-fit px-4 py-2.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm"
               >
                 <span className="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse flex-shrink-0" />
                 <span
-                  className="text-white/70 text-xs tracking-widest uppercase whitespace-nowrap font-mono"
+                  className="text-white/80 text-xs tracking-widest uppercase whitespace-nowrap font-mono"
                   style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                 >
                   Available for AI &amp; Software Roles
@@ -170,20 +170,21 @@ export default function App() {
               </motion.div>
 
               {/* Headline with rotating scrambled word */}
-              <div className="mb-6 overflow-visible">
+              <div className="mb-8 overflow-visible">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <p
-                    className="uppercase leading-none mb-1 font-bold"
+                    className="uppercase mb-2 font-bold"
                     style={{
                       fontFamily: '"Anton", "Impact", "Arial Black", sans-serif',
                       fontSize: 'clamp(28px, 5vw, 68px)',
                       WebkitTextStroke: '1px rgba(255,255,255,0.85)',
                       color: 'transparent',
-                      letterSpacing: '0.02em',
+                      letterSpacing: '0.04em',
+                      lineHeight: 1.15,
                     }}
                   >
                     BUILD WITH
@@ -197,14 +198,13 @@ export default function App() {
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: -30, filter: 'blur(8px)' }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="leading-none"
                     style={{
                       fontFamily: '"Anton", "Impact", "Arial Black", sans-serif',
-                      fontSize: 'clamp(52px, 9.5vw, 140px)',
+                      fontSize: 'clamp(52px, 9.5vw, 130px)',
                       color: '#CCFF00',
-                      lineHeight: 0.88,
+                      lineHeight: 1.05,
                       textShadow: '0 0 45px rgba(204,255,0,0.35)',
-                      letterSpacing: '-0.01em',
+                      letterSpacing: '0.01em',
                     }}
                   >
                     <ScrambleText text={ROTATING_WORDS[wordIndex]} />
@@ -217,9 +217,9 @@ export default function App() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 0.7 }}
-                className="mb-6"
+                className="mb-8"
               >
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-px bg-[#CCFF00]" />
                   <span
                     className="text-[#CCFF00] text-xs tracking-[0.3em] uppercase font-mono font-semibold"
@@ -229,7 +229,8 @@ export default function App() {
                   </span>
                 </div>
                 <p
-                  className="text-white/70 text-sm leading-relaxed max-w-lg font-sans"
+                  className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl font-sans"
+                  style={{ lineHeight: 1.8 }}
                 >
                   Computer Science &amp; Engineering at GEC Idukki · AI &amp; Data Science at IIT Guwahati.
                   Architecting intelligent RAG pipelines, local LLM systems, and cross-platform Flutter experiences.

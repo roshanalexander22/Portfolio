@@ -72,18 +72,18 @@ export default function ExperienceTimeline() {
             <span>INDUSTRY INTERNSHIP &amp; CAMPUS LEADERSHIP</span>
           </div>
           <h2
-            className="text-4xl md:text-6xl text-white uppercase leading-none font-bold tracking-tight"
-            style={{ fontFamily: '"Anton", sans-serif' }}
+            className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
+            style={{ fontFamily: '"Anton", sans-serif', lineHeight: 1.1 }}
           >
             EXPERIENCE &amp; <span className="text-[#CCFF00]">ROLES</span>
           </h2>
-          <p className="text-white/50 text-sm mt-3 max-w-2xl font-sans leading-relaxed">
+          <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
             Combining real-world AI internship experience with high-impact community leadership, developer mentorship, and emergency response.
           </p>
         </div>
 
         {/* Timeline Stack */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           {EXPERIENCES.map((exp, index) => (
             <motion.div
               key={exp.role}
@@ -92,7 +92,7 @@ export default function ExperienceTimeline() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
               onMouseEnter={() => sound.playHover()}
-              className="group p-6 md:p-8 rounded-xl border border-white/[0.08] hover:border-white/20 transition-all duration-300 relative overflow-hidden"
+              className="group p-8 md:p-10 rounded-xl border border-white/[0.08] hover:border-white/20 transition-all duration-300 relative overflow-hidden"
               style={{ background: 'rgba(255, 255, 255, 0.02)' }}
             >
               {/* Left accent border bar */}
@@ -103,7 +103,7 @@ export default function ExperienceTimeline() {
 
               <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <span
                       className="text-[10px] px-2.5 py-0.5 rounded font-mono font-bold tracking-wider uppercase"
                       style={{
@@ -114,45 +114,45 @@ export default function ExperienceTimeline() {
                     >
                       {exp.type}
                     </span>
-                    <span className="text-white/30 text-xs font-mono">
+                    <span className="text-white/40 text-xs font-mono">
                       {exp.location}
                     </span>
                   </div>
 
                   <h3
-                    className="text-white text-2xl font-bold uppercase tracking-wide leading-tight group-hover:text-[#CCFF00] transition-colors"
+                    className="text-white text-2xl md:text-3xl font-bold uppercase tracking-wide leading-tight group-hover:text-[#CCFF00] transition-colors"
                     style={{ fontFamily: '"Anton", sans-serif' }}
                   >
                     {exp.role}
                   </h3>
 
-                  <div className="text-[#88aaff] text-xs font-mono font-semibold mt-1">
+                  <div className="text-[#88aaff] text-sm font-mono font-semibold mt-1">
                     {exp.company}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-white/40 text-xs font-mono flex-shrink-0">
+                <div className="flex items-center gap-2 text-white/50 text-xs font-mono flex-shrink-0">
                   <Calendar size={13} className="text-[#CCFF00]" />
                   <span>{exp.period}</span>
                 </div>
               </div>
 
-              <p className="text-white/70 text-sm leading-relaxed font-sans mb-5 max-w-4xl">
+              <p className="text-white/80 text-base leading-relaxed font-sans mb-6 max-w-4xl" style={{ lineHeight: 1.8 }}>
                 {exp.description}
               </p>
 
               {/* Key deliverables */}
-              <div className="pt-4 border-t border-white/[0.06]">
-                <div className="text-[10px] font-mono text-white/40 tracking-widest uppercase mb-2">
+              <div className="pt-5 border-t border-white/[0.06]">
+                <div className="text-[10px] font-mono text-white/40 tracking-widest uppercase mb-3">
                   KEY ACHIEVEMENTS &amp; DELIVERABLES:
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {exp.deliverables.map((del) => (
                     <div
                       key={del}
-                      className="p-3 rounded border border-white/5 bg-white/[0.015] text-xs font-mono text-white/60 flex items-start gap-2"
+                      className="p-3.5 rounded border border-white/5 bg-white/[0.015] text-xs md:text-sm font-mono text-white/70 flex items-start gap-2.5 leading-relaxed"
                     >
-                      <ArrowRight size={12} className="text-[#CCFF00] flex-shrink-0 mt-0.5" />
+                      <ArrowRight size={13} className="text-[#CCFF00] flex-shrink-0 mt-1" />
                       <span>{del}</span>
                     </div>
                   ))}

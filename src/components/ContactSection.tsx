@@ -68,12 +68,12 @@ export default function ContactSection({ onNotify }: ContactSectionProps) {
             <span>DIRECT TRANSMISSION &amp; OPPORTUNITIES</span>
           </div>
           <h2
-            className="text-4xl md:text-6xl text-white uppercase leading-none font-bold tracking-tight"
-            style={{ fontFamily: '"Anton", sans-serif' }}
+            className="text-4xl md:text-6xl text-white uppercase font-bold tracking-tight"
+            style={{ fontFamily: '"Anton", sans-serif', lineHeight: 1.1 }}
           >
             LET'S BUILD <span className="text-[#CCFF00]">TOGETHER</span>
           </h2>
-          <p className="text-white/50 text-sm mt-3 max-w-2xl font-sans leading-relaxed">
+          <p className="text-white/70 text-base md:text-lg mt-4 max-w-2xl font-sans leading-relaxed">
             Actively open for AI/ML engineering internships, cross-platform software roles, high-impact collaborations, and open-source hackathons.
           </p>
         </div>

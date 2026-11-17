@@ -73,7 +73,7 @@ export default function AboutSection() {
           >
             ABOUT <span className="text-[#CCFF00]">ROSHAN</span>
           </h2>
-          <p className="text-white/50 text-sm mt-3 max-w-3xl font-sans leading-relaxed">
+          <p className="text-white/70 text-base md:text-lg mt-4 max-w-3xl font-sans leading-relaxed">
             AI Engineer and Computer Science undergrad pursuing dual academic tracks at GEC Idukki and IIT Guwahati.
             Driven by a singular motto: <span className="text-white font-medium">build software that solves real human problems with cutting-edge intelligence and world-class craft.</span>
           </p>
@@ -84,20 +84,20 @@ export default function AboutSection() {
           {/* Left Bio Card */}
           <div className="lg:col-span-7 space-y-6">
             <div
-              className="p-8 rounded-xl border border-white/[0.08] relative overflow-hidden"
+              className="p-8 md:p-10 rounded-xl border border-white/[0.08] relative overflow-hidden"
               style={{ background: 'rgba(255, 255, 255, 0.02)' }}
             >
               <h3
-                className="text-2xl text-white font-bold uppercase tracking-wide mb-4 flex items-center gap-2"
+                className="text-2xl text-white font-bold uppercase tracking-wide mb-6 flex items-center gap-2"
                 style={{ fontFamily: '"Anton", sans-serif' }}
               >
                 <span>ENGINEERING PHILOSOPHY</span>
                 <span className="text-[#CCFF00]">✦</span>
               </h3>
 
-              <div className="space-y-4 text-white/70 text-sm font-sans leading-relaxed">
+              <div className="space-y-5 text-white/80 text-base leading-relaxed font-sans" style={{ lineHeight: 1.85 }}>
                 <p>
-                  I bridge the frontier between <strong className="text-white">Generative &amp; Agentic AI</strong> and <strong className="text-white">high-performance cross-platform software</strong>.
+                  I bridge the frontier between <strong className="text-white font-semibold">Generative &amp; Agentic AI</strong> and <strong className="text-white font-semibold">high-performance cross-platform software</strong>.
                   Rather than viewing LLMs as black-box APIs, I believe in running models locally with Ollama and Qwen, optimizing vector embedding chunking, and implementing verifiable multi-agent loops that work deterministically.
                 </p>
                 <p>
@@ -228,7 +228,7 @@ export default function AboutSection() {
                   {edu.institution}
                 </p>
 
-                <p className="text-white/60 text-xs leading-relaxed font-sans mb-4">
+                <p className="text-white/75 text-sm leading-relaxed font-sans mb-5" style={{ lineHeight: 1.8 }}>
                   {edu.description}
                 </p>
 

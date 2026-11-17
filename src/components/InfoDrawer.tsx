@@ -36,94 +36,40 @@ export type Section = 'menu' | 'projects' | 'about' | 'skills' | 'contact';
 
 const PROJECTS = [
   {
-    title: 'IndicClaimVerifier',
+    title: 'IndicClaimVerifier (FactCheck AI)',
     tag: '🏆 HACKATHON WINNER',
     year: '2026',
-    desc: 'RAG-based automated claim verification and evidence-retrieval framework for Indic languages, extracting relevant facts from large knowledge bases with local LLM inference.',
+    desc: 'RAG-based automated claim verification and evidence-retrieval framework for Indic languages, extracting relevant facts from large knowledge bases with local offline LLM inference.',
     stack: ['Python', 'RAG', 'Ollama', 'Qwen LLM', 'LangChain', 'FAISS'],
     accent: '#CCFF00',
     href: 'https://github.com/roshanalexander22',
   },
   {
-    title: 'ProofMesh',
-    tag: 'CRYPTOGRAPHIC AUDIT',
-    year: '2026',
-    desc: 'Decentralized cryptographic verification architecture where independent parties mathematically audit and prove the history of digital events against tampering.',
-    stack: ['Python', 'Cryptography', 'Merkle Trees', 'Distributed Systems'],
+    title: 'GeoSeize Fitness Game',
+    tag: 'MOBILE · GPS CONQUEST',
+    year: '2025',
+    desc: 'GPS-based multiplayer territory-conquest fitness game built in Flutter with real-time maps, squad mechanics, Firebase backend, and Dart unit tests.',
+    stack: ['Flutter', 'Dart', 'Firebase', 'Google Maps API'],
     accent: '#88aaff',
-    href: 'https://github.com/roshanalexander22/ProofMesh',
+    href: 'https://github.com/roshanalexander22/GeoSeize',
   },
   {
-    title: 'Trace AI',
+    title: 'Nothing X Web OS',
+    tag: 'FUTURISTIC UI',
+    year: '2025',
+    desc: 'High-fidelity web application recreating the distinct dot-matrix aesthetic and audio feedback of Nothing OS and Nothing X wireless earphone controls.',
+    stack: ['TypeScript', 'Tailwind CSS', 'Web Audio API', 'Three.js'],
+    accent: '#ffffff',
+    href: 'https://github.com/roshanalexander22/Nothing-x-app',
+  },
+  {
+    title: 'Trace Vision AI',
     tag: 'VISION · GESTURE AI',
     year: '2025',
     desc: 'AI-driven computer vision system using device front camera to understand real-time hand gestures and trigger responsive animations.',
     stack: ['TypeScript', 'Computer Vision', 'OpenCV / MediaPipe', 'Canvas'],
     accent: '#ff88aa',
     href: 'https://github.com/roshanalexander22/Trace',
-  },
-  {
-    title: 'GeoSeize',
-    tag: 'MOBILE · GPS GAME',
-    year: '2025',
-    desc: 'GPS-based multiplayer territory-conquest fitness game built in Flutter with real-time maps, squad mechanics, Firebase backend, and Dart unit tests.',
-    stack: ['Flutter', 'Dart', 'Firebase', 'Google Maps API'],
-    accent: '#CCFF00',
-    href: 'https://github.com/roshanalexander22/GeoSeize',
-  },
-  {
-    title: 'μFIFA World Cup 2026',
-    tag: 'TOURNAMENT PLATFORM',
-    year: '2026',
-    desc: '6-week gamified innovation tournament platform where participants compete across Maker, Coder, Designer, and Strategist squads with live leaderboards.',
-    stack: ['Python', 'FastAPI', 'Gamification Engine', 'Docker'],
-    accent: '#aaffcc',
-    href: 'https://github.com/roshanalexander22/mufifa-2026',
-  },
-  {
-    title: 'Nothing X Web Interface',
-    tag: 'FUTURISTIC UI',
-    year: '2025',
-    desc: 'High-fidelity web application recreating the distinct dot-matrix aesthetic and audio feedback of Nothing OS and Nothing X earphone controls.',
-    stack: ['TypeScript', 'Tailwind CSS', 'Web Audio API', 'Three.js'],
-    accent: '#ffffff',
-    href: 'https://github.com/roshanalexander22/Nothing-x-app',
-  },
-  {
-    title: 'Karuthal',
-    tag: 'HEALTHCARE · COMMUNITY',
-    year: '2025',
-    desc: 'Community emergency and healthcare outreach mobile platform bridging blood donors, emergency assistance, and localized relief efforts.',
-    stack: ['Flutter', 'Dart', 'Firebase', 'State Management'],
-    accent: '#ffaa88',
-    href: 'https://github.com/roshanalexander22/Karuthal',
-  },
-  {
-    title: 'Stress Level Detector',
-    tag: 'CROSS-PLATFORM · WELLNESS',
-    year: '2025',
-    desc: 'Multi-platform wellness application delivering clinical stress evaluations, calming binaural audio sequences, and historical anxiety analytics.',
-    stack: ['Flutter', 'Dart', 'Audio Therapy', 'Health Analytics'],
-    accent: '#88ffcc',
-    href: 'https://github.com/roshanalexander22/Stress-level-detection-app',
-  },
-  {
-    title: 'U & me',
-    tag: 'ANDROID WIDGET',
-    year: '2025',
-    desc: 'Android application allowing paired users to stream a single live photo directly to each other through an interactive 3×2 launcher widget.',
-    stack: ['Dart', 'Flutter', 'Android Widget API', 'Firebase Storage'],
-    accent: '#ff88cc',
-    href: 'https://github.com/roshanalexander22/U-me',
-  },
-  {
-    title: 'Customer Support Ticket Triage',
-    tag: 'AGENTIC AI',
-    year: '2025',
-    desc: 'Autonomous multi-agent customer support triage pipeline classifying priority, sentiment, and auto-drafting contextual resolution proposals.',
-    stack: ['Python', 'LangChain', 'Agentic Workflows', 'Ollama'],
-    accent: '#CCFF00',
-    href: 'https://github.com/roshanalexander22/Customer-Support-Ticket-Triage',
   },
   {
     title: 'Automated Waste Classification',
@@ -135,13 +81,13 @@ const PROJECTS = [
     href: 'https://github.com/roshanalexander22/Automated-Waste-Classification',
   },
   {
-    title: 'Software Documentation Assistant',
-    tag: 'GENAI · DEVTOOLS',
-    year: '2025',
-    desc: 'Developer assistant that parses codebase ASTs and synthesizes comprehensive architecture documentation and API specifications.',
-    stack: ['Python', 'AST Parser', 'Prompt Engineering', 'LangChain'],
-    accent: '#88aaff',
-    href: 'https://github.com/roshanalexander22/Software-Documentation-Assistant',
+    title: 'ProofMesh Audit Ledger',
+    tag: 'CRYPTOGRAPHIC AUDIT',
+    year: '2026',
+    desc: 'Decentralized cryptographic verification architecture where independent parties mathematically audit and prove the history of digital events against tampering.',
+    stack: ['Python', 'Cryptography', 'Merkle Trees', 'Distributed Systems'],
+    accent: '#aaffcc',
+    href: 'https://github.com/roshanalexander22/ProofMesh',
   },
 ];
 
@@ -246,7 +192,7 @@ export default function InfoDrawer({ isOpen, onClose, initialSection = 'menu', o
   };
 
   const MENU_ITEMS: { label: string; sub: string; section: Section }[] = [
-    { label: 'PROJECTS', sub: '12+ engineered projects', section: 'projects' },
+    { label: 'PROJECTS', sub: 'Curated flagship projects', section: 'projects' },
     { label: 'ABOUT ME', sub: 'IIT Guwahati & GEC Idukki', section: 'about' },
     { label: 'SKILLS', sub: 'Tech stack, Tools & Certs', section: 'skills' },
     { label: "LET'S WORK", sub: 'Direct contact & opportunities', section: 'contact' },
@@ -461,10 +407,10 @@ export default function InfoDrawer({ isOpen, onClose, initialSection = 'menu', o
                       PROJECTS
                     </h2>
                     <p
-                      className="text-white/30 text-xs mb-7 tracking-wide font-mono"
+                      className="text-white/40 text-xs mb-7 tracking-wide font-mono"
                       style={{ fontFamily: '"IBM Plex Mono", monospace' }}
                     >
-                      Selected work — 12+ engineered repositories
+                      Selected work — Flagship architectures
                     </p>
 
                     <div className="space-y-4">

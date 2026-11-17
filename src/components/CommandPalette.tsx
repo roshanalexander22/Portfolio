@@ -13,8 +13,8 @@ interface CommandPaletteProps {
 export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotify }: CommandPaletteProps) {
   const [input, setInput] = useState('');
   const [logs, setLogs] = useState<Array<{ text: string; color?: string }>>([
-    { text: 'SYSTEM: ROSHAN_OS v2.6 INITIALIZED', color: '#CCFF00' },
-    { text: "Type 'help' to see available commands, or select a command below." },
+    { text: 'SYSTEM: ROSHAN_OS v3.0 INITIALIZED', color: '#CCFF00' },
+    { text: "Type 'help' to see commands, or scroll to any section instantly." },
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -32,6 +32,16 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
     }
   }, [logs]);
 
+  const scrollToSection = (id: string) => {
+    onClose();
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+  };
+
   const executeCommand = (cmd: string) => {
     const cleanCmd = cmd.trim().toLowerCase();
     const newLogs = [...logs, { text: `> ${cmd}`, color: '#ffffff' }];
@@ -40,53 +50,69 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
       case 'help':
         newLogs.push(
           { text: 'AVAILABLE COMMANDS:', color: '#CCFF00' },
-          { text: '  projects  - View technical projects & hackathon winners' },
-          { text: '  about     - Education, IIT Guwahati & GEC Idukki details' },
-          { text: '  skills    - Tech stack, AI/ML, Flutter, languages' },
-          { text: '  contact   - Open direct contact form' },
-          { text: '  phone     - Copy phone number (+91 9656271863)' },
-          { text: '  instagram - Open Instagram profile (@roshhnnnnn_)' },
-          { text: '  github    - Open GitHub repository' },
-          { text: '  clear     - Clear terminal history' },
-          { text: '  exit      - Close terminal' }
+          { text: '  projects     - Scroll to 12+ projects showcase' },
+          { text: '  skills       - Scroll to Neuron Skills network canvas' },
+          { text: '  about        - View dual-degree education & biography' },
+          { text: '  achievements - View hackathon wins, honors & scores' },
+          { text: '  experience   - View internship & leadership roles' },
+          { text: '  contact      - Dispatch transmission / direct channels' },
+          { text: '  phone        - Copy mobile (+91 9656271863)' },
+          { text: '  email        - Copy email (roshanalexander72@gmail.com)' },
+          { text: '  github       - Open GitHub profile' },
+          { text: '  drawer       - Toggle cyber slide drawer' },
+          { text: '  clear        - Clear console history' },
+          { text: '  exit         - Close console' }
         );
         break;
 
       case 'projects':
-        newLogs.push({ text: 'Opening Projects archive...', color: '#CCFF00' });
-        onClose();
-        onOpenSection('projects');
-        break;
-
-      case 'about':
-        newLogs.push({ text: 'Opening About & Education...', color: '#CCFF00' });
-        onClose();
-        onOpenSection('about');
+        newLogs.push({ text: 'Navigating to Projects showcase...', color: '#CCFF00' });
+        scrollToSection('projects');
         break;
 
       case 'skills':
-        newLogs.push({ text: 'Opening Skills & Certifications...', color: '#CCFF00' });
-        onClose();
-        onOpenSection('skills');
+      case 'neuron':
+        newLogs.push({ text: 'Navigating to Neuron Skills Network...', color: '#CCFF00' });
+        scrollToSection('skills');
+        break;
+
+      case 'about':
+        newLogs.push({ text: 'Navigating to About & Dual Degree Track...', color: '#CCFF00' });
+        scrollToSection('about');
+        break;
+
+      case 'achievements':
+      case 'awards':
+        newLogs.push({ text: 'Navigating to Achievements & Honors...', color: '#CCFF00' });
+        scrollToSection('achievements');
+        break;
+
+      case 'experience':
+        newLogs.push({ text: 'Navigating to Experience Timeline...', color: '#CCFF00' });
+        scrollToSection('experience');
         break;
 
       case 'contact':
       case 'hire':
-        newLogs.push({ text: "Opening Let's Work contact drawer...", color: '#CCFF00' });
+        newLogs.push({ text: 'Navigating to Direct Transmission Station...', color: '#CCFF00' });
+        scrollToSection('contact');
+        break;
+
+      case 'drawer':
         onClose();
-        onOpenSection('contact');
+        onOpenSection('projects');
         break;
 
       case 'phone':
-        navigator.clipboard.writeText('+91 9656271863');
+        navigator.clipboard.writeText('+919656271863');
         newLogs.push({ text: 'Copied +91 9656271863 to clipboard!', color: '#CCFF00' });
         onNotify('Copied Phone: +91 9656271863');
         break;
 
-      case 'instagram':
-      case 'insta':
-        newLogs.push({ text: 'Opening Instagram @roshhnnnnn_...', color: '#E1306C' });
-        window.open('https://www.instagram.com/roshhnnnnn_/?hl=en', '_blank');
+      case 'email':
+        navigator.clipboard.writeText('roshanalexander72@gmail.com');
+        newLogs.push({ text: 'Copied roshanalexander72@gmail.com to clipboard!', color: '#CCFF00' });
+        onNotify('Copied Email: roshanalexander72@gmail.com');
         break;
 
       case 'github':
@@ -133,7 +159,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm"
           />
 
           {/* Terminal Dialog */}
@@ -142,10 +168,10 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[92vw] max-w-xl rounded-lg border border-white/15 shadow-2xl overflow-hidden"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[92vw] max-w-xl rounded-xl border border-white/15 shadow-2xl overflow-hidden"
             style={{
               background: '#090914',
-              boxShadow: '0 0 50px rgba(204, 255, 0, 0.1)',
+              boxShadow: '0 0 50px rgba(204, 255, 0, 0.12)',
             }}
           >
             {/* Header bar */}
@@ -185,16 +211,17 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
               <span className="text-[10px] text-white/30 uppercase font-mono">Quick:</span>
               {[
                 { cmd: 'projects', label: 'Projects' },
+                { cmd: 'skills', label: 'Neuron Skills' },
                 { cmd: 'about', label: 'About' },
-                { cmd: 'skills', label: 'Skills' },
-                { cmd: 'phone', label: 'Phone' },
-                { cmd: 'instagram', label: 'Instagram' },
+                { cmd: 'achievements', label: 'Honors' },
+                { cmd: 'experience', label: 'Experience' },
+                { cmd: 'contact', label: 'Contact' },
                 { cmd: 'help', label: 'Help' },
               ].map((chip) => (
                 <button
                   key={chip.cmd}
                   onClick={() => executeCommand(chip.cmd)}
-                  className="px-2 py-0.5 rounded border border-white/10 text-white/50 hover:text-[#CCFF00] hover:border-[#CCFF00]/40 text-[10px] font-mono whitespace-nowrap transition-colors"
+                  className="px-2.5 py-0.5 rounded border border-white/10 text-white/50 hover:text-[#CCFF00] hover:border-[#CCFF00]/40 text-[10px] font-mono whitespace-nowrap transition-colors"
                 >
                   {chip.label}
                 </button>
@@ -209,7 +236,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenSection, onNotif
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="type command (e.g. 'help', 'projects', 'phone')..."
+                placeholder="type command (e.g. 'projects', 'skills', 'about', 'contact')..."
                 className="flex-1 bg-transparent text-white text-xs font-mono outline-none placeholder:text-white/20"
                 style={{ fontFamily: '"IBM Plex Mono", monospace' }}
               />
